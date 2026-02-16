@@ -76,7 +76,7 @@ flowchart TD
     C["threadIdx.y, blockIdx.y"] --> D["iy = threadIdx.y + blockDim.y * blockIdx.y"]
     B --> E["index = iy * nx + ix"]
     D --> E
-    E --> F["メモリアクセス: A[index]"]
+    E --> F["メモリアクセス: A#91;index#93;"]
 ```
 
 ### グリッドサイズの計算

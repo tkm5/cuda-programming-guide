@@ -28,14 +28,14 @@ order: 904
 ```mermaid
 flowchart TD
     subgraph "フィルタあり（安全）"
-        FA["input[0] += input[1] → 変更"]
-        FB["input[1] → 変更なし"]
-        FC["input[2] += input[3] → 変更"]
+        FA["input#91;0#93; += input#91;1#93; → 変更"]
+        FB["input#91;1#93; → 変更なし"]
+        FC["input#91;2#93; += input#91;3#93; → 変更"]
     end
     subgraph "フィルタなし（レースコンディションの可能性）"
-        NA["input[0] += input[1] → 変更"]
-        NB["input[1] += input[2] → 変更（不要だが実行）"]
-        NC["input[2] += input[3] → 変更"]
+        NA["input#91;0#93; += input#91;1#93; → 変更"]
+        NB["input#91;1#93; += input#91;2#93; → 変更 不要だが実行"]
+        NC["input#91;2#93; += input#91;3#93; → 変更"]
     end
 ```
 

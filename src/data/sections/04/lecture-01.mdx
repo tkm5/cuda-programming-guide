@@ -76,14 +76,14 @@ int main() {
 
 ```mermaid
 flowchart TD
-    A[cudaGetDeviceCount] --> B{デバイス数を取得}
-    B --> C[forループでデバイスを反復]
-    C --> D[cudaDeviceProp構造体を宣言]
-    D --> E[cudaGetDeviceProperties実行]
-    E --> F[prop.nameでデバイス名取得]
-    E --> G[prop.totalGlobalMemでメモリ容量取得]
-    E --> H[prop.multiProcessorCountでSM数取得]
-    E --> I[prop.maxThreadsPerBlockで最大スレッド数取得]
+    A[cudaGetDeviceCount] --> B{"デバイス数を取得"}
+    B --> C["forループでデバイスを反復"]
+    C --> D["cudaDeviceProp構造体を宣言"]
+    D --> E["cudaGetDeviceProperties実行"]
+    E --> F["prop.nameでデバイス名取得"]
+    E --> G["prop.totalGlobalMemでメモリ容量取得"]
+    E --> H["prop.multiProcessorCountでSM数取得"]
+    E --> I["prop.maxThreadsPerBlockで最大スレッド数取得"]
 ```
 
 ## まとめ

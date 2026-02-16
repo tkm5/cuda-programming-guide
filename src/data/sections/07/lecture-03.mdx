@@ -32,8 +32,8 @@ CUDAのスレッドはブロックに組織化され，さらにワープ（32�
 ```mermaid
 flowchart TD
     START["全32スレッド"] --> BRANCH{"if文の条件"}
-    BRANCH -->|条件=true| PATH_A["パスA実行<br/>（他のスレッドは待機）"]
-    BRANCH -->|条件=false| PATH_B["パスB実行<br/>（他のスレッドは待機）"]
+    BRANCH -->|"条件=true"| PATH_A["パスA実行<br/>（他のスレッドは待機）"]
+    BRANCH -->|"条件=false"| PATH_B["パスB実行<br/>（他のスレッドは待機）"]
     PATH_A --> MERGE["合流点<br/>全スレッドが再び同時実行"]
     PATH_B --> MERGE
 ```

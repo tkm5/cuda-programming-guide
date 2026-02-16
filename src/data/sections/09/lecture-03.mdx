@@ -39,14 +39,14 @@ reduce_in_place<<<1, blockSize>>>(d_input, n);
 ```mermaid
 flowchart TD
     subgraph "フィルタあり"
-        A1["スレッド0: input[0] += input[1] ✓"]
+        A1["スレッド0: input#91;0#93; += input#91;1#93; ✓"]
         A2["スレッド1: 実行しない"]
-        A3["スレッド2: input[2] += input[3] ✓"]
+        A3["スレッド2: input#91;2#93; += input#91;3#93; ✓"]
     end
     subgraph "フィルタなし"
-        B1["スレッド0: input[0] += input[1] ✓"]
-        B2["スレッド1: input[1] += input[2] (不要だが無害)"]
-        B3["スレッド2: input[2] += input[3] ✓"]
+        B1["スレッド0: input#91;0#93; += input#91;1#93; ✓"]
+        B2["スレッド1: input#91;1#93; += input#91;2#93; 不要だが無害"]
+        B3["スレッド2: input#91;2#93; += input#91;3#93; ✓"]
     end
 ```
 

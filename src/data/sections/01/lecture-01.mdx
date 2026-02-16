@@ -31,8 +31,8 @@ CPUとGPUはどちらも`DRAM`（グローバルメモリ），キャッシュ�
 
 ```mermaid
 graph LR
-    subgraph 逐次実行（CPU向き）
-        A1[ADD R1=R2+R3] --> M1[MUL R4=R1*R5] --> D1[DIV R6=R4/R7]
+    subgraph "逐次実行（CPU向き）"
+        A1["ADD R1=R2+R3"] --> M1["MUL R4=R1*R5"] --> D1["DIV R6=R4/R7"]
     end
 ```
 
@@ -40,10 +40,10 @@ graph LR
 
 ```mermaid
 graph LR
-    subgraph 並列実行（GPU向き）
-        A2[ADD R1=R2+R3]
-        M2[MUL R4=R5*R6]
-        D2[DIV R7=R8/R9]
+    subgraph "並列実行（GPU向き）"
+        A2["ADD R1=R2+R3"]
+        M2["MUL R4=R5*R6"]
+        D2["DIV R7=R8/R9"]
     end
 ```
 
@@ -55,7 +55,7 @@ graph LR
 
 ```mermaid
 graph TB
-    CPU[CPU] <-->|PCIインターフェース| GPU[GPU]
+    CPU[CPU] <-->|"PCIインターフェース"| GPU[GPU]
     CPU <--> CPUMEM[CPU DRAM]
     GPU <--> GPUMEM[GPU DRAM]
 ```

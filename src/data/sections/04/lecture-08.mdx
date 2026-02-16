@@ -85,14 +85,14 @@ inline void gpuKernelAssert(const char *file, int line) {
 
 ```mermaid
 flowchart TD
-    A[CUDA関数呼び出し] --> B{同期 or 非同期?}
-    B -->|同期操作| C[戻り値をcudaError_tに格納]
-    B -->|非同期操作| D[cudaGetLastErrorで取得]
-    C --> E{cudaSuccess?}
+    A["CUDA関数呼び出し"] --> B{"同期 or 非同期?"}
+    B -->|"同期操作"| C["戻り値をcudaError_tに格納"]
+    B -->|"非同期操作"| D["cudaGetLastErrorで取得"]
+    C --> E{"cudaSuccess?"}
     D --> E
-    E -->|成功| F[次の処理へ]
-    E -->|失敗| G[cudaGetErrorStringでメッセージ取得]
-    G --> H[エラー出力してexit]
+    E -->|"成功"| F["次の処理へ"]
+    E -->|"失敗"| G["cudaGetErrorStringでメッセージ取得"]
+    G --> H["エラー出力してexit"]
 ```
 
 ### マクロ版のメリット

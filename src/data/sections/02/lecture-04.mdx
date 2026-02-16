@@ -58,12 +58,12 @@ CUDAツールキットをインストールすると，`nvcc`コンパイラに�
 
 ```mermaid
 flowchart LR
-    A[WSL で Linux 起動] --> B[nvcc --version で確認]
-    B --> C{インストール済み?}
-    C -->|はい| E[バージョン確認完了]
-    C -->|いいえ| D[sudo apt install nvidia-cuda-toolkit]
+    A["WSL で Linux 起動"] --> B["nvcc --version で確認"]
+    B --> C{"インストール済み?"}
+    C -->|"はい"| E["バージョン確認完了"]
+    C -->|"いいえ"| D[sudo apt install nvidia-cuda-toolkit]
     D --> E
-    E --> F[CUDA プログラミング開始]
+    E --> F["CUDA プログラミング開始"]
 ```
 
 ## まとめ

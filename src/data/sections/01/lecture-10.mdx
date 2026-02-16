@@ -26,7 +26,7 @@ order: 110
 
 ```mermaid
 graph LR
-    V[Volta: CC 7.x] --> A[Ampere: CC 8.0] --> H[Hopper: CC 9.x]
+    V["Volta: CC 7.x"] --> A["Ampere: CC 8.0"] --> H["Hopper: CC 9.x"]
 ```
 
 ### 機能のサポート
@@ -63,10 +63,10 @@ GPUの`Compute Capability`は，どのバージョンのCUDAツールキット�
 
 ```mermaid
 graph TD
-    GPU[GPUの選択] --> CC[Compute Capability確認]
-    CC --> CUDA[対応CUDAバージョン確認]
-    CUDA --> FEAT[必要な機能の利用可否確認]
-    FEAT --> DEV[開発開始]
+    GPU["GPUの選択"] --> CC["Compute Capability確認"]
+    CC --> CUDA["対応CUDAバージョン確認"]
+    CUDA --> FEAT["必要な機能の利用可否確認"]
+    FEAT --> DEV["開発開始"]
 ```
 
 ## まとめ
