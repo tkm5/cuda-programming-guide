@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1103
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -81,3 +82,39 @@ Naive版から200マイクロ秒以上の削減，shared memory版からも約10
 - `float4`によるベクトル化ロードで1スレッドあたり4要素を同時に取得し，メモリ帯域の利用効率を向上させる
 - メモリ空間の違いに対応するため`reinterpret_cast`によるキャスティングが必要である
 - Naive版と比較して約2.4倍の性能向上を達成した
+
+<Quiz questions={[
+  {
+    question: "float4を使ったベクトル化ロードでは，1スレッドあたり何個のfloat値を同時にロードできるか？",
+    options: [
+      "1個",
+      "2個",
+      "4個",
+      "8個"
+    ],
+    answer: 2,
+    explanation: "float4はC++の型で，4つのfloat値（.x，.y，.z，.w）を1回のメモリトランザクションでロードできる．これにより，同じタイルサイズでも使用スレッド数を1/4に削減できる．"
+  },
+  {
+    question: "ループアンローリングによって改善されるのは主にどの側面か？",
+    options: [
+      "メモリ帯域幅の利用効率",
+      "shared memoryの使用量",
+      "ループ制御命令（カウンタ更新・条件判定）の排除による計算律速の改善",
+      "グローバルメモリのcoalescing"
+    ],
+    answer: 2,
+    explanation: "ループアンローリングは，forループの反復ごとに発生するカウンタ更新と条件判定のオーバーヘッドを排除することで，不要な制御命令を削減し計算律速を改善する．"
+  },
+  {
+    question: "shared memoryとグローバルメモリ間でfloat4としてロード/ストアする際にreinterpret_castが必要な理由は何か？",
+    options: [
+      "float4はCUDA固有の型であり，標準C++では扱えないため",
+      "shared memoryとグローバルメモリのアドレス空間が異なるため，アドレスの解釈を強制する必要があるため",
+      "float4はアライメント要件が厳しく，コンパイラが自動変換できないため",
+      "shared memoryはfloat型のみをサポートしているため"
+    ],
+    answer: 1,
+    explanation: "shared memoryとグローバルメモリではアドレス空間が異なる（shared memoryは約6桁，グローバルメモリは約12桁の16進アドレス）．reinterpret_castを使ってアドレスの解釈を強制することで，float4としての正しいロード/ストアを実現する．"
+  }
+]} />

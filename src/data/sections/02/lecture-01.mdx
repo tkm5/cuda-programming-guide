@@ -10,6 +10,7 @@ tags: ["setup", "cuda"]
 category: "setup"
 order: 201
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -75,3 +76,39 @@ graph TD
 - `cudaMalloc`や`cudaMemcpy`といったランタイムAPIにより，CPUとGPU間のメモリ管理やデータ転送を行う
 - `Nsight Systems`や`cuda-gdb`などのツールを使い，アプリケーションの最適化とデバッグが可能である
 - CUDAの各バージョンでは新しいGPUアーキテクチャ（Hopper，Ada Lovelaceなど）の機能に対応するためライブラリやツールが更新される
+
+<Quiz questions={[
+  {
+    question: "CUDAツールキットにおいて，高レベルのCUDAコードをGPUが理解できる形式に変換するコンパイラは何ですか？",
+    options: [
+      "gcc",
+      "cuda-gdb",
+      "nvcc",
+      "cuBLAS"
+    ],
+    answer: 2,
+    explanation: "nvcc（NVIDIA CUDA Compiler）はCUDA開発の中心にあるコンパイラです．高レベルのCUDAコードをPTXコードに変換し，様々なNVIDIAアーキテクチャと互換性のある実行ファイルを生成します．"
+  },
+  {
+    question: "GPU上にメモリを確保するためのCUDAランタイムAPI関数はどれですか？",
+    options: [
+      "cudaMemcpy",
+      "cudaMalloc",
+      "cuBLAS",
+      "cuRAND"
+    ],
+    answer: 1,
+    explanation: "cudaMallocはGPU上にメモリを確保するための関数です．C言語のmallocに相当しますが，GPU側のメモリを対象とします．cudaMemcpyはホスト（CPU）とデバイス（GPU）間でデータを転送する関数です．"
+  },
+  {
+    question: "ディープラーニング向けニューラルネットワーク高速化ライブラリはどれですか？",
+    options: [
+      "cuBLAS",
+      "cuFFT",
+      "cuRAND",
+      "cuDNN"
+    ],
+    answer: 3,
+    explanation: "cuDNNはディープラーニング向けニューラルネットワーク高速化ライブラリです．cuBLASは線形代数演算用，cuFFTは高速フーリエ変換用，cuRANDは乱数生成用のライブラリです．"
+  }
+]} />

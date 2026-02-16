@@ -11,6 +11,8 @@ category: "profiling"
 order: 402
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 `nvidia-smi`（NVIDIA System Management Interface）は，NVIDIAが提供するコマンドラインユーティリティで，GPUのリアルタイム監視と設定管理を行う．このレクチャーでは，パフォーマンスモニタリング（GPU使用率，メモリ使用量，温度，消費電力），設定管理（クロック速度，電力制限），デバイス情報の照会という3つの主要機能を実践的に解説する．
@@ -75,3 +77,28 @@ GPUのクロック速度は負荷に応じて動的に変化する．CUDAアプ�
 - `-l`オプションで継続的なモニタリングが可能で，CUDAアプリケーション実行時のメトリクス変動を観察できる
 - 電力制限やクロック速度の制御が可能だが，GPUの対応状況を確認する必要がある
 - 出力をCSVファイルに保存してExcelで分析することもできる
+
+<Quiz questions={[
+  {
+    question: "nvidia-smiが提供する3つの主要機能として正しい組み合わせはどれか？",
+    options: [
+      "コンパイル，デバッグ，プロファイリング",
+      "パフォーマンスモニタリング，設定管理，デバイス情報照会",
+      "メモリ管理，カーネル起動，エラーチェック",
+      "コード最適化，メモリ転送，スレッド管理"
+    ],
+    answer: 1,
+    explanation: "`nvidia-smi`はパフォーマンスモニタリング（GPU使用率，メモリ使用量，温度，消費電力），設定管理（クロック速度，電力制限），デバイス情報照会（ドライバ・CUDAバージョン）の3つの機能を提供する．"
+  },
+  {
+    question: "nvidia-smiで5秒ごとにGPUメトリクスを継続的に更新表示するコマンドはどれか？",
+    options: [
+      "nvidia-smi -r 5",
+      "nvidia-smi -l 5",
+      "nvidia-smi -t 5",
+      "nvidia-smi --interval 5"
+    ],
+    answer: 1,
+    explanation: "`nvidia-smi -l 5`で5秒間隔でGPUメトリクスを継続的に更新表示できる．`-l`はloopの略で，指定した秒数ごとにメトリクスを更新する．"
+  }
+]} />

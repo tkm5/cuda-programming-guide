@@ -11,6 +11,8 @@ category: "cuda-basics"
 order: 304
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 Linux環境でCUDAプログラムをコンパイルし実行する方法を解説する．`nvcc`コマンドの使い方，`cudaDeviceSynchronize`による同期の重要性，およびコンパイルエラーのデバッグ方法を学ぶ．
@@ -93,3 +95,28 @@ nvcc -o project_001 project_001.cu
 - `cudaDeviceSynchronize()`はCPUがGPUの処理完了を待つために必要であり，これがないと出力が表示されない場合がある
 - コンパイルエラーは表示される行番号の前の行に原因がある場合がある
 - この手順はWindowsユーザーもLinuxユーザーも理解しておくべきである
+
+<Quiz questions={[
+  {
+    question: "CUDAプログラムをコンパイルするために使用するコマンドは何か？",
+    options: [
+      "gcc",
+      "g++",
+      "nvcc",
+      "cuda-compile"
+    ],
+    answer: 2,
+    explanation: "`nvcc`はNVIDIAが提供するCUDAコンパイラであり，CUDAソースファイル（.cu）をコンパイルして実行ファイルを生成する．"
+  },
+  {
+    question: "cudaDeviceSynchronize()の役割は何か？",
+    options: [
+      "GPUメモリを解放する",
+      "カーネルを起動する",
+      "CPUがGPUの処理完了を待つ",
+      "GPU間でデータを同期する"
+    ],
+    answer: 2,
+    explanation: "`cudaDeviceSynchronize()`はCPUがGPUカーネルの実行完了を待つために使用される．これがないと，GPUの処理が完了する前にCPUが次の処理に進んでしまい，出力が表示されない場合がある．"
+  }
+]} />

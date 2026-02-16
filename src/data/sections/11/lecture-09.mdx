@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1109
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -130,3 +131,39 @@ clean:
 - `cublasGemmEx`関数で入出力の精度，転置，Tensor Core使用の有無を細かく指定できる
 - cuBLAS版はWMMA API版の約3.6倍，Naive版の約24倍高速である
 - 最大の性能を求める場合は，自前のカーネル実装よりもcuBLASの利用が推奨される
+
+<Quiz questions={[
+  {
+    question: "cuBLASの行列積の式 C = alpha × A × B + beta × C において，通常の行列積 C = A × B を実行するにはalphaとbetaをどのように設定するか？",
+    options: [
+      "alpha = 0.0，beta = 1.0",
+      "alpha = 1.0，beta = 1.0",
+      "alpha = 1.0，beta = 0.0",
+      "alpha = 0.0，beta = 0.0"
+    ],
+    answer: 2,
+    explanation: "alpha = 1.0，beta = 0.0に設定すると，C = 1.0 × A × B + 0.0 × C = A × Bとなり，通常の行列積を実行できる．"
+  },
+  {
+    question: "cuBLASをコンパイルする際に必要なリンクフラグはどれか？",
+    options: [
+      "-lmma",
+      "-lcuda",
+      "-lcublas",
+      "-ltensor"
+    ],
+    answer: 2,
+    explanation: "cuBLASライブラリを使用するには，コンパイル時に-lcublasフラグを指定してライブラリをリンクする必要がある．このフラグがないとリンクエラーが発生する．"
+  },
+  {
+    question: "行列サイズ1024×1024において，cuBLAS版はNaive版と比較しておおよそ何倍高速か？",
+    options: [
+      "約6.5倍",
+      "約12倍",
+      "約24倍",
+      "約48倍"
+    ],
+    answer: 2,
+    explanation: "Naive版が約2,540マイクロ秒，cuBLAS版が約107マイクロ秒であり，約24倍の性能向上を達成している．cuBLASはWMMA API版（約388マイクロ秒）と比較しても約3.6倍高速である．"
+  }
+]} />

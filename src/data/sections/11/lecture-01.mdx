@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1101
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -122,3 +123,39 @@ int main() {
 - CPUの3重ループのうち外側2つをGPUのスレッド/ブロックIDで置き換えることでNaive GPU実装を実現する
 - Naive実装はグローバルメモリのみを使用し，最適化の余地が大きい
 - 次のステップとして`shared memory`とタイリングによる最適化が必要である
+
+<Quiz questions={[
+  {
+    question: "GPU上のNaive行列積実装において，CPUの3重ループのうちGPUのスレッド/ブロックIDで置き換えられるのはどれか？",
+    options: [
+      "k次元のループのみ",
+      "行と列の外側2つのループ",
+      "3つのループすべて",
+      "列のループとk次元のループ"
+    ],
+    answer: 1,
+    explanation: "GPUのNaive実装では，外側の行ループと列ループをblockIdx/threadIdxで置き換え，k次元のループのみカーネル内に残す．各スレッドがC行列の1要素を担当する．"
+  },
+  {
+    question: "行列積 C = A × B において，AがM×K，BがK×Nの場合，結果行列Cのサイズはいくつか？",
+    options: [
+      "M×K",
+      "K×N",
+      "M×N",
+      "K×K"
+    ],
+    answer: 2,
+    explanation: "行列積ではAの行数（M）とBの列数（N）が結果行列Cの次元を決定する．したがって，CのサイズはM×Nとなる．"
+  },
+  {
+    question: "Naive GPU行列積のブロックサイズを16×16に設定した場合，1ブロックあたりのスレッド数はいくつか？",
+    options: [
+      "16",
+      "32",
+      "128",
+      "256"
+    ],
+    answer: 3,
+    explanation: "ブロックサイズが16×16の場合，1ブロックあたりのスレッド数は16 × 16 = 256スレッドとなる．"
+  }
+]} />

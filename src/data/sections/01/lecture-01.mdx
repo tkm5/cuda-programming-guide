@@ -10,10 +10,11 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 101
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
-このレクチャーでは，CPUとGPUの根本的な違いを解説し，なぜGPUのハードウェアを理解することがパフォーマンス最適化に不可欠なのかを説明します．逐次実行と並列実行の違い，CPUとGPUの共存関係，そしてNvidia GPUの内部構造（`Streaming Multiprocessor`）の基本を学びます．
+このレクチャーでは，CPUとGPUの根本的な違いを解説し，なぜGPUのハードウェアを理解することがパフォーマンス最適化に不可欠なのかを説明します．逐次実行と並列実行の違い，CPUとGPUの共存関係，そしてNVIDIA GPUの内部構造（`Streaming Multiprocessor`）の基本を学びます．
 
 ## 主要な内容
 
@@ -60,7 +61,7 @@ graph TB
     GPU <--> GPUMEM[GPU DRAM]
 ```
 
-### Nvidia GPUの内部構造
+### NVIDIA GPUの内部構造
 
 GPUカード内部の最も重要なコンポーネントは`Streaming Multiprocessor`（`SM`）です．各`SM`には以下のユニットが含まれます：
 
@@ -83,5 +84,41 @@ GPUカード内部の最も重要なコンポーネントは`Streaming Multiproc
 
 - CPUは逐次的な依存関係のある命令の実行に優れ，GPUは多数の独立した命令の並列実行に優れている
 - GPUのパフォーマンス最適化には，ハードウェアの深い理解が不可欠である
-- `Streaming Multiprocessor`（`SM`）はNvidia GPUの中核ユニットであり，様々な種類のコアやメモリを内蔵している
+- `Streaming Multiprocessor`（`SM`）はNVIDIA GPUの中核ユニットであり，様々な種類のコアやメモリを内蔵している
 - `A100` GPUは約7000個の単精度コアを持ち，世界トップクラスのスーパーコンピュータに採用されている
+
+<Quiz questions={[
+  {
+    question: "CPUとGPUの最も根本的な違いは何ですか？",
+    options: [
+      "GPUはCPUよりもクロック周波数が高い",
+      "CPUは逐次的な命令実行に優れ，GPUは独立した命令の並列実行に優れている",
+      "CPUにはキャッシュメモリがないが，GPUにはある",
+      "GPUはメモリを持たないが，CPUは持っている"
+    ],
+    answer: 1,
+    explanation: "CPUは少数の高速ALUを持ち，依存関係のある命令を逐次的に高速で処理するのに優れています．一方，GPUは数千のコアを持ち，独立した命令を並列に実行することに優れています．"
+  },
+  {
+    question: "NVIDIA GPUの内部で最も重要なコンポーネントは何ですか？",
+    options: [
+      "DRAM",
+      "PCIインターフェース",
+      "Streaming Multiprocessor（SM）",
+      "冷却ファン"
+    ],
+    answer: 2,
+    explanation: "Streaming Multiprocessor（SM）はNVIDIA GPUの中核ユニットです．各SMには浮動小数点演算コア，整数演算コア，Tensor Core，特殊関数ユニット，L1キャッシュメモリなど，計算に必要な様々なユニットが含まれています．"
+  },
+  {
+    question: "A100 GPUの単精度コアの周波数は，現代のCPUと比較してどの程度ですか？",
+    options: [
+      "CPUと同等の3〜4GHz",
+      "CPUの約2分の1",
+      "CPUの約4分の1",
+      "CPUの約10倍"
+    ],
+    answer: 2,
+    explanation: "A100 GPUのコア周波数は765〜1200MHz（約1.2GHz）で，現代のCPU（3〜4GHz）の約4分の1です．GPUは個々のコアの速度ではなく，大量のコアによる並列処理で性能を発揮します．"
+  }
+]} />

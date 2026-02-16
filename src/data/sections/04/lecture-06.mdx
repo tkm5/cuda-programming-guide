@@ -11,6 +11,8 @@ category: "profiling"
 order: 406
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 Nsight Computeツールを使ったCUDAアプリケーションのプロファイリングを開始する際に，特にWindows環境（WSL使用時）で発生するGPUパフォーマンスカウンターへのアクセス権限の問題とその解決方法を解説する．`ncu`コマンドの基本的な使い方と，権限設定の変更手順を実践的に示す．
@@ -62,3 +64,28 @@ flowchart TD
 - NVIDIA Control Panelの Developer Settings から全ユーザーへのアクセスを許可することで解決できる
 - 設定変更後はシステムの再起動が必要である
 - `sudo`を使用しても`ncu`コマンドが見つからないケースがあるため，権限設定の変更が推奨される
+
+<Quiz questions={[
+  {
+    question: "Nsight Computeでプロファイリングを実行するコマンドラインツールは何か？",
+    options: [
+      "nvprof",
+      "nsys",
+      "ncu",
+      "cuda-profiler"
+    ],
+    answer: 2,
+    explanation: "`ncu`はNsight Computeのコマンドラインインターフェースである．`nvprof`は非推奨，`nsys`はNsight Systemsのコマンドラインツールである．"
+  },
+  {
+    question: "Windows環境（WSL使用時）でncuコマンドがエラーになる主な原因は何か？",
+    options: [
+      "CUDAドライバがインストールされていない",
+      "GPUパフォーマンスカウンターへのアクセス権限がない",
+      "nvccコンパイラのバージョンが古い",
+      "WSLがGPUをサポートしていない"
+    ],
+    answer: 1,
+    explanation: "GPUドライバのインストール時にパフォーマンスカウンターへのアクセスが管理者ユーザーのみに制限されるため，一般ユーザーではプロファイリングに失敗する．NVIDIA Control Panelで全ユーザーへのアクセスを許可することで解決できる．"
+  }
+]} />

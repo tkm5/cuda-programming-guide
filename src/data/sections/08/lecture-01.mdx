@@ -10,6 +10,7 @@ tags: ["debugging", "cuda"]
 category: "debugging"
 order: 801
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -118,3 +119,28 @@ Nsight Systems:
 - ブレークポイントを設定し，変数の値，メモリの状態，アセンブリコードをステップ実行しながら確認できる
 - Nsight ComputeやNsight Systemsも Visual Studioから直接起動でき，プロファイリングの手順が大幅に簡素化される
 - 次セクションのベクトルリダクション最適化では，実行時間の比較にNsight Computeを活用する
+
+<Quiz questions={[
+  {
+    question: "Nsight IntegrationとNsight Computeの役割の違いとして正しいものはどれか？",
+    options: [
+      "どちらもプロファイリング専用ツールであり，デバッグ機能はない",
+      "Nsight Integrationはブレークポイントを使ったデバッグツール，Nsight ComputeはSM利用率やL1/L2ヒット率などの性能メトリクスを収集するプロファイリングツール",
+      "Nsight ComputeはCPUコードのデバッグ，Nsight IntegrationはGPUコードのプロファイリングに使用する",
+      "Nsight IntegrationはLinux専用，Nsight ComputeはWindows専用のツールである"
+    ],
+    answer: 1,
+    explanation: "Nsight Integrationはブレークポイントの設定や変数の状態確認などのデバッグ機能を提供する．Nsight Computeは実行時間，SM利用率，オキュパンシ，L1/L2ヒット率などの性能メトリクスを収集するプロファイリングツールである．"
+  },
+  {
+    question: "Visual Studioのメモリウィンドウでデバッグ中にステップ実行した際，新たに計算された要素はどのように表示されるか？",
+    options: [
+      "太字で表示される",
+      "赤色でハイライトされる",
+      "点滅して表示される",
+      "別のウィンドウにポップアップ表示される"
+    ],
+    answer: 1,
+    explanation: "デバッグ中にステップ実行するたびに，新たに計算された要素はメモリウィンドウ上で赤色にハイライトされて表示される．これにより，各ステップでどのメモリ位置が更新されたかを視覚的に確認できる．"
+  }
+]} />

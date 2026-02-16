@@ -10,16 +10,17 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 110
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
-このレクチャーでは，Nvidia GPUの`Compute Capability`（CC）という重要な概念を解説します．CCはGPUの設計分類を示すバージョン番号で，対応する機能，ソフトウェア互換性，CUDAツールキットとの関係を決定します．
+このレクチャーでは，NVIDIA GPUの`Compute Capability`（CC）という重要な概念を解説します．CCはGPUの設計分類を示すバージョン番号で，対応する機能，ソフトウェア互換性，CUDAツールキットとの関係を決定します．
 
 ## 主要な内容
 
 ### Compute Capabilityとは
 
-`Compute Capability`（`CC`）は，NvidiaがGPUの一般的な機能と処理能力を示すために使用する設計分類です．`3.0`，`5.1`，`7.5`のようなバージョン番号で表現されます．
+`Compute Capability`（`CC`）は，NVIDIAがGPUの一般的な機能と処理能力を示すために使用する設計分類です．`3.0`，`5.1`，`7.5`のようなバージョン番号で表現されます．
 
 - ドットの前の数字（メジャー番号）：主要なアーキテクチャの変更を示す
 - ドットの後の数字（マイナー番号）：軽微な改善や拡張を示す
@@ -75,3 +76,39 @@ graph TD
 - メジャー番号はアーキテクチャの大きな変更，マイナー番号は軽微な改善を示す
 - CCバージョンによって対応する機能（半精度演算，`Tensor Core`など）が異なる
 - CUDAツールキットとの互換性はCCバージョンによって決まるため，ハードウェアとソフトウェアの整合性が重要である
+
+<Quiz questions={[
+  {
+    question: "Compute Capabilityのメジャー番号（ドットの前の数字）は何を示しますか？",
+    options: [
+      "GPUの製造年を示す",
+      "対応するCUDAバージョンを示す",
+      "主要なアーキテクチャの変更を示す",
+      "GPUのコア数を示す"
+    ],
+    answer: 2,
+    explanation: "Compute Capabilityのメジャー番号（ドットの前の数字）は主要なアーキテクチャの変更を示します．マイナー番号（ドットの後の数字）は軽微な改善や拡張を示します．"
+  },
+  {
+    question: "Tensor Coreを利用するために必要な最低限のCompute Capabilityはいくつですか？",
+    options: [
+      "CC 5.0",
+      "CC 6.0",
+      "CC 7.0",
+      "CC 8.0"
+    ],
+    answer: 2,
+    explanation: "Tensor CoreはCC 7.0（Voltaアーキテクチャ）以上でのみ利用可能です．CC 5.0では半精度演算もTensor Coreも対応していません．"
+  },
+  {
+    question: "HopperアーキテクチャのGPUで使用できるCUDAツールキットの最小バージョンはどれですか？",
+    options: [
+      "CUDA 6.5",
+      "CUDA 10.0",
+      "CUDA 11.8",
+      "CUDA 12.0"
+    ],
+    answer: 2,
+    explanation: "Hopperアーキテクチャ（CC 9.x）では，最小CUDAバージョンが11.8です．これより古いCUDAバージョンを使用すると互換性エラーが発生します．"
+  }
+]} />

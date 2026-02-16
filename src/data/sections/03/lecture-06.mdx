@@ -11,6 +11,8 @@ category: "cuda-basics"
 order: 306
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 ベクトル加算プロジェクトを通じて，CUDAアプリケーションの基本的なステップ（メモリ確保，データ初期化，CPU-GPU間データ転送，カーネル実行，結果の取得，メモリ解放）を学ぶ．CPUでの逐次処理とGPUでの並列処理の違いを理解し，スレッドIDを使った要素のインデックス指定方法を習得する．
@@ -121,3 +123,39 @@ free(c);
 - `cudaMalloc`でGPU側メモリを確保し，`cudaMemcpy`でCPU-GPU間のデータ転送を行う
 - GPUカーネルではスレッドIDをベクトルのインデックスとして使い，`for`ループなしで並列処理を実現する
 - 転送方向（`cudaMemcpyHostToDevice` / `cudaMemcpyDeviceToHost`）を正しく指定することが重要である
+
+<Quiz questions={[
+  {
+    question: "CUDAアプリケーションの基本ステップとして正しい順序はどれか？",
+    options: [
+      "カーネル実行 → メモリ確保 → データ転送 → メモリ解放",
+      "メモリ確保 → 初期化 → CPU→GPU転送 → カーネル実行 → GPU→CPU転送 → メモリ解放",
+      "初期化 → メモリ確保 → カーネル実行 → データ転送 → メモリ解放",
+      "メモリ確保 → カーネル実行 → 初期化 → データ転送 → メモリ解放"
+    ],
+    answer: 1,
+    explanation: "CUDAアプリケーションは「メモリ確保 → 初期化 → CPU→GPU転送 → カーネル実行 → GPU→CPU転送 → メモリ解放」の6ステップで構成される．"
+  },
+  {
+    question: "GPU側のメモリを確保するために使用するCUDA関数はどれか？",
+    options: [
+      "malloc",
+      "cudaAlloc",
+      "cudaMalloc",
+      "gpuMalloc"
+    ],
+    answer: 2,
+    explanation: "`cudaMalloc`はGPU側（デバイス側）のメモリを確保するために使用される．CPU側のメモリ確保には通常の`malloc`を使用する．"
+  },
+  {
+    question: "GPUからCPUへデータを転送する際に指定する転送方向フラグはどれか？",
+    options: [
+      "cudaMemcpyHostToDevice",
+      "cudaMemcpyDeviceToHost",
+      "cudaMemcpyDeviceToDevice",
+      "cudaMemcpyHostToHost"
+    ],
+    answer: 1,
+    explanation: "GPU（Device）からCPU（Host）へデータを転送する場合は`cudaMemcpyDeviceToHost`を指定する．逆方向のCPUからGPUへは`cudaMemcpyHostToDevice`を使用する．"
+  }
+]} />

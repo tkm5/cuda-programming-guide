@@ -11,6 +11,8 @@ category: "profiling"
 order: 409
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 Nsight Computeはコマンドライン分析とGUI分析の2つの方法を提供する．このレクチャーでは，コマンドライン分析（`ncu`コマンド）を用いて，セクションの選択，メトリクスの収集，CSV形式でのエクスポートなど，実践的なプロファイリング手法を解説する．100,000以上のメトリクスの構造と読み方を体系的に整理する．
@@ -98,3 +100,39 @@ ncu --query-metrics-mode all --query-metrics > all_metrics.txt
 - `.avg`，`.max`，`.min`，`.sum`の4つの集計方法で，SM単位とGPU全体の両方の視点から分析できる
 - `--csv`オプションでExcelやスプレッドシートでの分析用に出力を保存できる
 - 正規表現を使って特定のハードウェアユニットに関連するメトリクスを一括で収集できる
+
+<Quiz questions={[
+  {
+    question: "Nsight Computeのメトリクス名の構造として正しいものはどれか？",
+    options: [
+      "メトリクス名.ハードウェアユニット.集計方法",
+      "集計方法__メトリクス名.ハードウェアユニット",
+      "ハードウェアユニット__メトリクス名.集計方法",
+      "メトリクス名__集計方法.ハードウェアユニット"
+    ],
+    answer: 2,
+    explanation: "メトリクス名は「ハードウェアユニット__メトリクス名.集計方法」という体系的な命名規則に従う．例: `l1tex__t_sector_hit_rate.pct`は，L1キャッシュ（l1tex）のセクターヒット率（t_sector_hit_rate）をパーセント（.pct）で表示する．"
+  },
+  {
+    question: "ncuコマンドで特定のセクションのみを表示するためのオプションはどれか？",
+    options: [
+      "--filter",
+      "--section",
+      "--select",
+      "--set"
+    ],
+    answer: 1,
+    explanation: "`--section`オプションで特定のセクション（例: LaunchStats，WarpStateStats）のみを表示できる．デフォルト実行では4つのセクションが表示される．"
+  },
+  {
+    question: "メトリクスの集計方法（サフィックス）のうち，全SMの合計値を表すものはどれか？",
+    options: [
+      ".avg",
+      ".max",
+      ".min",
+      ".sum"
+    ],
+    answer: 3,
+    explanation: "`.sum`はGPU全体の合計値を表す．`.avg`は全SMの平均値，`.max`は最大値，`.min`は最小値である．`.sum`は最大値 x SM数で計算される．"
+  }
+]} />

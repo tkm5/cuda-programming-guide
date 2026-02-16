@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1106
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -80,3 +81,28 @@ RTX 3060（一般ユーザー向けGPU）での測定であり，A100（HPC向�
 - 行列サイズが大きいほどTensor Coreの優位性が増す
 - コンパイル時には`-arch=sm_70`以上のcompute capabilityの指定が必須である
 - HPC向けGPU（A100等）ではさらに大きな性能差が期待できる
+
+<Quiz questions={[
+  {
+    question: "行列サイズ2048×2048の場合，Tensor Core版はNaive版と比較して約何倍の性能向上を示したか？",
+    options: [
+      "約2.4倍",
+      "約4.4倍",
+      "約7.4倍",
+      "約24倍"
+    ],
+    answer: 2,
+    explanation: "行列サイズ2048×2048の場合，Naive版は20.17ミリ秒，Tensor Core版は2.73ミリ秒であり，約7.4倍の性能向上が測定された．行列サイズが大きいほどTensor Coreの優位性が増す．"
+  },
+  {
+    question: "Tensor Core用のCUDAコードをコンパイルする際に必須の指定は何か？",
+    options: [
+      "-O3（最適化レベル3）",
+      "-lcublas（cuBLASライブラリのリンク）",
+      "-arch=sm_70以上のcompute capability",
+      "-std=c++17（C++17標準）"
+    ],
+    answer: 2,
+    explanation: "Tensor Core用のコードには-arch=sm_70以上のcompute capabilityの指定が必須である．指定しない場合，古いアーキテクチャでコンパイルされ，WMMA関連の関数が未定義エラーとなる．"
+  }
+]} />

@@ -10,6 +10,7 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 112
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -100,7 +101,7 @@ graph LR
 - `Volta`（第2世代）：GPU間に2本の接続，リンク速度の向上
 - 帯域幅：`Pascal`の160 GB/sから`Volta`の300 GB/sに向上
 
-`NVLink`はNvidiaの`DGX`サーバー（4〜8基のGPUを搭載）の標準機能であり，AI・HPC向けの高い計算性能を支えています．
+`NVLink`はNVIDIAの`DGX`サーバー（4〜8基のGPUを搭載）の標準機能であり，AI・HPC向けの高い計算性能を支えています．
 
 ### Compute Capability表
 
@@ -113,3 +114,39 @@ graph LR
 - SIMT方式により，32スレッド（1ワープ）が同じ命令を異なるデータに対して同時実行する
 - `Pascal`から`Ampere`にかけてメモリ帯域幅は約2倍，`L2`キャッシュは7倍以上に増加した
 - `NVLink`によりマルチGPU構成での高速通信が実現されている
+
+<Quiz questions={[
+  {
+    question: "SIMT（Single Instruction Multiple Thread）方式において，1ワープは何スレッドで構成されますか？",
+    options: [
+      "16スレッド",
+      "32スレッド",
+      "64スレッド",
+      "128スレッド"
+    ],
+    answer: 1,
+    explanation: "ワープは32スレッドのグループで構成されます．SIMT方式では，全スレッドが同じ命令を異なるデータに対して同時実行します．例えばベクトル加算では，各スレッドが同じ「加算」命令を異なる要素に対して実行します．"
+  },
+  {
+    question: "Voltaアーキテクチャで初めて導入された画期的な機能はどれですか？",
+    options: [
+      "L2キャッシュ",
+      "NVLink",
+      "Tensor Core",
+      "単精度コア"
+    ],
+    answer: 2,
+    explanation: "Tensor CoreはVoltaアーキテクチャ（2017年）で初めて導入されました．行列演算専用のユニットであり，スループットを最大12倍向上させ，AIアプリケーションの性能を飛躍的に改善しました．"
+  },
+  {
+    question: "VoltaのSM（Streaming Multiprocessor）はいくつのパーティションに分割されていますか？",
+    options: [
+      "2つ",
+      "4つ",
+      "8つ",
+      "16つ"
+    ],
+    answer: 1,
+    explanation: "VoltaのSMは4つのパーティションに分割されています．各パーティションにはL0命令キャッシュ，ワープスケジューラ，ディスパッチャ，レジスタファイル，16個の単精度コア，16個の整数コア，Tensor Core，特殊関数ユニットが含まれます．"
+  }
+]} />

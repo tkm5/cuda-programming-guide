@@ -10,6 +10,7 @@ tags: ["indexing", "cuda"]
 category: "indexing"
 order: 601
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -134,3 +135,39 @@ int main() {
 - `ix`と`iy`をスレッド・ブロックIDから計算し，`index = iy * nx + ix`で1次元メモリインデックスに変換する
 - ブロックサイズの選択はオキュパンシと実行性能に直接影響する
 - 総スレッド数が行列の総要素数と一致するようにグリッドサイズを計算する必要がある
+
+<Quiz questions={[
+  {
+    question: "2次元行列の座標 (i=3, j=1) にある要素を，行サイズ5のRow-Major配置で1次元メモリインデックスに変換するとき，正しい式はどれか？",
+    options: [
+      "index = i * row_size + j = 3 * 5 + 1 = 16",
+      "index = j * row_size + i = 1 * 5 + 3 = 8",
+      "index = i + j = 3 + 1 = 4",
+      "index = i * j + row_size = 3 * 1 + 5 = 8"
+    ],
+    answer: 1,
+    explanation: "Row-Major配置では index = j * row_size + i で計算する．j=1, row_size=5, i=3 のとき，index = 1 * 5 + 3 = 8 となる．"
+  },
+  {
+    question: "2Dブロック・スレッド構成で，blockDim = (32, 32) とした場合の1ブロックあたりのスレッド数と，オキュパンシへの影響として正しいものはどれか？",
+    options: [
+      "512スレッド，オキュパンシ約100%",
+      "1024スレッド，オキュパンシ約50%で1SM当たり1ブロックのみ実行可能",
+      "1024スレッド，オキュパンシ約100%で1SM当たり4ブロック実行可能",
+      "64スレッド，オキュパンシ約74%"
+    ],
+    answer: 1,
+    explanation: "32 x 32 = 1024スレッドとなり，Ampereアーキテクチャの最大値に達する．この場合，1SM当たり1ブロックしか実行できず，オキュパンシは約50%に低下する．"
+  },
+  {
+    question: "CUDAカーネル内で2Dインデックスを1Dメモリインデックスに変換する際，ix と iy の計算として正しいものはどれか？",
+    options: [
+      "ix = threadIdx.y + blockDim.y * blockIdx.y, iy = threadIdx.x + blockDim.x * blockIdx.x",
+      "ix = threadIdx.x * blockDim.x + blockIdx.x, iy = threadIdx.y * blockDim.y + blockIdx.y",
+      "ix = threadIdx.x + blockDim.x * blockIdx.x, iy = threadIdx.y + blockDim.y * blockIdx.y",
+      "ix = blockIdx.x * gridDim.x + threadIdx.x, iy = blockIdx.y * gridDim.y + threadIdx.y"
+    ],
+    answer: 2,
+    explanation: "各次元のインデックスは ix = threadIdx.x + blockDim.x * blockIdx.x，iy = threadIdx.y + blockDim.y * blockIdx.y で計算する．これにより，スレッドIDとブロックIDから行列内の位置を求められる．"
+  }
+]} />

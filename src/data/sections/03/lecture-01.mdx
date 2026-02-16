@@ -11,6 +11,8 @@ category: "cuda-basics"
 order: 301
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 この記事では，コースで使用するGitHubリポジトリについて紹介する．リポジトリにはすべてのプロジェクトのソースコードが含まれており，各セクションで学ぶ内容に対応したサンプルコードを入手できる．
@@ -40,3 +42,28 @@ git clone <リポジトリURL>
 - コースのGitHubリポジトリにはすべてのプロジェクトのCUDAソースコードが含まれている
 - `git clone`でリポジトリを取得し，ローカル環境で実行できる
 - 各セクション・プロジェクトごとにディレクトリが整理されている
+
+<Quiz questions={[
+  {
+    question: "CUDAソースファイルの拡張子は何か？",
+    options: [
+      ".cpp",
+      ".cu",
+      ".cuda",
+      ".gpu"
+    ],
+    answer: 1,
+    explanation: "CUDAソースファイルの拡張子は`.cu`である．通常のC/C++ファイル（.cpp）とは区別され，nvccコンパイラで処理される．"
+  },
+  {
+    question: "コースのGitHubリポジトリを取得するために使用するコマンドは何か？",
+    options: [
+      "git pull",
+      "git fetch",
+      "git clone",
+      "git download"
+    ],
+    answer: 2,
+    explanation: "`git clone`コマンドを使用してリポジトリをローカル環境にコピーする．これにより，すべてのプロジェクトのソースコードを取得できる．"
+  }
+]} />

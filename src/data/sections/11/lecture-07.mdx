@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1107
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -121,3 +122,39 @@ __global__ void wmma_gemm(half* a, half* b, float* c, int m, int n, int k) {
 - `fragment`はタイルデータをワープ内の全スレッドに分散保持するデータ構造である
 - ワープIDの計算が必要で，タイルの割り当てはブロック単位ではなくワープ単位で行う
 - サポートされるタイルサイズは限定的だが，`load_matrix_sync`，`mma_sync`，`store_matrix_sync`の3関数で行列積を簡潔に記述できる
+
+<Quiz questions={[
+  {
+    question: "WMMA APIにおけるfragmentとは何か？",
+    options: [
+      "shared memory上に確保されるタイルデータの格納領域",
+      "行列のタイルをワープ内の全スレッドに分散して保持するデータ構造",
+      "グローバルメモリ上の行列の部分領域へのポインタ",
+      "Tensor Coreのハードウェアレジスタへの直接参照"
+    ],
+    answer: 1,
+    explanation: "fragmentは，行列のタイルデータをワープ内の全スレッド（32スレッド）に分散して保持するデータ構造である．通常コア版のshared memoryとは異なり，レジスタ上にデータを保持する．"
+  },
+  {
+    question: "WMMA APIで行列積の累算演算（D = A × B + C）を実行する関数はどれか？",
+    options: [
+      "wmma::fill_fragment()",
+      "wmma::load_matrix_sync()",
+      "wmma::mma_sync()",
+      "wmma::store_matrix_sync()"
+    ],
+    answer: 2,
+    explanation: "wmma::mma_sync()がD = A × B + Cの行列積累算演算を実行する関数である．fill_fragmentは初期化，load_matrix_syncはロード，store_matrix_syncは格納を行う．"
+  },
+  {
+    question: "WMMA APIが通常コア版と異なる点として，タイルの割り当て単位はどうなるか？",
+    options: [
+      "スレッド単位で割り当てる",
+      "ブロック単位で割り当てる",
+      "ワープ単位で割り当てる",
+      "SM単位で割り当てる"
+    ],
+    answer: 2,
+    explanation: "通常コア版ではブロック単位でタイルを割り当てるが，WMMA APIではワープ単位でタイルを割り当てる．そのため，CUDAに組み込み変数が存在しないワープIDを手動で計算する必要がある．"
+  }
+]} />

@@ -10,6 +10,7 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 104
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -66,3 +67,28 @@ graph LR
 - 仕様ページには世代名とアーキテクチャ名が明記されている
 - 同じアーキテクチャでも異なる世代のGPUが存在する（例：`Ampere`アーキテクチャの`RTX 3090`と`A100`）
 - `Tesla`世代のGPUには冷却ファンがなく，`GeForce`世代には内蔵ファンがあることで外見から区別できる
+
+<Quiz questions={[
+  {
+    question: "GPUの仕様（アーキテクチャ名や世代など）を確認するのに便利なウェブサイトはどれですか？",
+    options: [
+      "Wikipedia",
+      "TechPowerUp",
+      "Stack Overflow",
+      "GitHub"
+    ],
+    answer: 1,
+    explanation: "TechPowerUpは様々なメーカーのGPUの詳細なデータベースを掲載しており，GPU名+TechPowerUpでGoogle検索するだけで，アーキテクチャ名，世代名，コア数などの仕様を簡単に確認できます．"
+  },
+  {
+    question: "Tesla世代のGPU（A100，V100など）に冷却ファンが搭載されていない理由は何ですか？",
+    options: [
+      "発熱量が少ないため不要である",
+      "コストを削減するため",
+      "HPC環境に外部の堅牢な冷却システムがあるため",
+      "消費電力を抑えるため"
+    ],
+    answer: 2,
+    explanation: "Tesla世代のGPUはHPC環境（スーパーコンピュータやデータセンター）で使用されるため，外部に堅牢な冷却システムが備わっています．そのため内蔵の冷却ファンは不要です．一方，GeForce世代は一般的なデスクトップ環境で使用されるため，内蔵ファンが必要です．"
+  }
+]} />

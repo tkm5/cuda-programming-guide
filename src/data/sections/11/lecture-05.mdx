@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1105
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -81,3 +82,39 @@ PyTorchなどのフレームワークも内部的にTensor Coreを活用して�
 - Volta（2017）で初めて導入され，以降のアーキテクチャで対応データ型が拡張されている
 - 通常コアと比較して最大9倍以上の性能向上が可能である
 - `cuBLAS`や`WMMA API`など複数の方法でプログラミングできる
+
+<Quiz questions={[
+  {
+    question: "Tensor Coreが初めて導入されたNVIDIA GPUアーキテクチャはどれか？",
+    options: [
+      "Pascal（2016）",
+      "Volta（2017）",
+      "Turing（2018）",
+      "Ampere（2020）"
+    ],
+    answer: 1,
+    explanation: "Tensor Coreは2017年のVoltaアーキテクチャで初めて導入された．以降のTuring，Ampere，Hopper等で対応データ型が拡張されている．"
+  },
+  {
+    question: "1つのTensor Coreが1サイクルで実行できるFMA（Fused Multiply-Add）演算の回数はいくつか？",
+    options: [
+      "1回",
+      "16回",
+      "64回",
+      "128回"
+    ],
+    answer: 2,
+    explanation: "1つのTensor Coreは1サイクルで64回のFMA演算を実行できる．FMAは乗算と加算の2演算を含むため，浮動小数点演算としては128回に相当する．"
+  },
+  {
+    question: "A100 GPUにおけるTensor Coreの総数はいくつか？",
+    options: [
+      "80個（1 SM × 80 SM）",
+      "320個（4 SM × 80 SM）",
+      "640個（8 SM × 80 SM）",
+      "1280個（16 SM × 80 SM）"
+    ],
+    answer: 2,
+    explanation: "A100 GPUには各SMに8つのTensor Coreが搭載されており，80 SM × 8 Tensor Core = 合計640のTensor Coreが存在する．"
+  }
+]} />

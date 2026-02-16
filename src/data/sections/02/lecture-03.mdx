@@ -10,6 +10,7 @@ tags: ["setup", "cuda"]
 category: "setup"
 order: 203
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -85,3 +86,28 @@ flowchart TD
 - `wsl --install`コマンドで利用可能なディストリビューションを確認し，`-d`オプションで指定してインストールする
 - エラー発生時は`wsl --update`でWSLを更新し，WSL2をデフォルトバージョンに設定して再試行する
 - 次のレクチャーで，このLinux環境上にCUDAツールキットをインストールする方法を学ぶ
+
+<Quiz questions={[
+  {
+    question: "WSLで特定のLinuxディストリビューションを指定してインストールするコマンドはどれですか？",
+    options: [
+      "wsl --install Ubuntu-20.04",
+      "wsl -d Ubuntu-20.04",
+      "wsl --setup Ubuntu-20.04",
+      "wsl --linux Ubuntu-20.04"
+    ],
+    answer: 1,
+    explanation: "wsl -dオプションでディストリビューション名を指定してインストールします．例えば，wsl -d Ubuntu-20.04と入力することでUbuntu 20.04をインストールできます．"
+  },
+  {
+    question: "WSLのインストール中にエラーが発生した場合，最初に試すべきコマンドはどれですか？",
+    options: [
+      "wsl --reset",
+      "wsl --reinstall",
+      "wsl --update",
+      "wsl --repair"
+    ],
+    answer: 2,
+    explanation: "WSLのインストール中にエラーが発生した場合，まずwsl --updateコマンドでWSLを最新バージョンに更新し，その後wsl --set-default-version 2でWSL2をデフォルトに設定してから再試行します．"
+  }
+]} />

@@ -10,24 +10,25 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 103
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
-このレクチャーでは，Nvidia GPUにおける「アーキテクチャ」と「世代（Generation）」という2つの重要な概念の違いと関係性を解説します．アーキテクチャはGPUチップの設計と能力を指し，世代はGPUの用途別カテゴリを指します．`Tegra`，`GeForce`，`Quadro`，`Tesla`の各世代の特徴も詳しく学びます．
+このレクチャーでは，NVIDIA GPUにおける「アーキテクチャ」と「世代（Generation）」という2つの重要な概念の違いと関係性を解説します．アーキテクチャはGPUチップの設計と能力を指し，世代はGPUの用途別カテゴリを指します．`Tegra`，`GeForce`，`Quadro`，`Tesla`の各世代の特徴も詳しく学びます．
 
 ## 主要な内容
 
 ### アーキテクチャとは
 
-`アーキテクチャ`とは，GPUの基本的な設計と構造を指します．コアの配置，データの処理・転送方法，グラフィックス描画や計算タスクの手法など，GPUの最も根本的なレベルでの設計です．Nvidiaは各アーキテクチャに`Turing`や`Pascal`などの有名な科学者・発明家の名前を付けています．Nvidiaは1〜2年ごとに新しいアーキテクチャをリリースしています．
+`アーキテクチャ`とは，GPUの基本的な設計と構造を指します．コアの配置，データの処理・転送方法，グラフィックス描画や計算タスクの手法など，GPUの最も根本的なレベルでの設計です．NVIDIAは各アーキテクチャに`Turing`や`Pascal`などの有名な科学者・発明家の名前を付けています．NVIDIAは1〜2年ごとに新しいアーキテクチャをリリースしています．
 
 ### 世代（Generation）とは
 
-Nvidia GPUは用途別に大きく2つのカテゴリに分かれます：
+NVIDIA GPUは用途別に大きく2つのカテゴリに分かれます：
 
 ```mermaid
 graph TD
-    A[Nvidia GPU] --> B["一般消費者向け"]
+    A[NVIDIA GPU] --> B["一般消費者向け"]
     A --> C["HPC向け"]
     B --> D[Tegra]
     B --> E[GeForce]
@@ -62,3 +63,39 @@ Top500スーパーコンピュータリストを確認すると，`Tesla`世代�
 - `GeForce`は一般消費者・ゲーマー向け，`Tesla`はHPC・スーパーコンピュータ向けに設計されている
 - `Quadro`の名称は最近`RTX`ラベルに統一された
 - 用途に応じた適切なGPUの選択には，これらの区別の理解が重要である
+
+<Quiz questions={[
+  {
+    question: "NVIDIA GPUにおける「アーキテクチャ」と「世代（Generation）」の違いとして正しいものはどれですか？",
+    options: [
+      "アーキテクチャは用途別カテゴリで，世代はチップの設計を指す",
+      "アーキテクチャはGPUチップの設計・能力を指し，世代はGPUの用途別カテゴリを指す",
+      "アーキテクチャと世代は同じ意味である",
+      "世代はリリース年を指し，アーキテクチャはメーカー名を指す"
+    ],
+    answer: 1,
+    explanation: "アーキテクチャはGPUチップの設計と能力（例：Hopper，Ampere，Volta）を指し，世代はGPUの用途別カテゴリ（例：GeForce，Tesla，Quadro）を指します．1つのアーキテクチャから複数の世代のGPUが製造されます．"
+  },
+  {
+    question: "Tesla世代のGPUの主な用途は何ですか？",
+    options: [
+      "ゲーマー向けの3Dグラフィックス",
+      "モバイルデバイス向けのSoC",
+      "HPC（高性能計算）環境・スーパーコンピュータ",
+      "プロフェッショナルワークステーション向け"
+    ],
+    answer: 2,
+    explanation: "Tesla世代のGPUはHPC（高性能計算）環境向けに設計されており，スーパーコンピュータやクラウドサーバーで使用されます．A100，V100，P100などが代表例です．なお，Elon Muskの企業とは無関係です．"
+  },
+  {
+    question: "Ampereアーキテクチャに基づくGPUとして正しい組み合わせはどれですか？",
+    options: [
+      "GeForce GTX 480とTesla X2070",
+      "GeForce RTX 3090とTesla A100",
+      "GeForce RTX 4090とTesla H100",
+      "GeForce GTX 980 TiとTesla M60"
+    ],
+    answer: 1,
+    explanation: "Ampereアーキテクチャ（2020年リリース）には，GeForce世代のRTX 3090（一般消費者向け）とTesla世代のA100（HPC向け）が含まれます．同じアーキテクチャから異なる市場向けのGPUが製造されています．"
+  }
+]} />

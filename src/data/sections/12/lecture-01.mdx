@@ -10,6 +10,7 @@ tags: ["profiling", "cuda"]
 category: "profiling"
 order: 1201
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -55,3 +56,28 @@ Nsight CopilotはNsight ComputeおよびNsight Systemsの最新版に統合さ�
 - Nsight Copilotは，AIを活用してGPUプロファイリング結果の解釈と最適化提案を行うツールである
 - Nsight Systems/Computeと統合され，専門知識がなくてもボトルネックの理解が容易になる
 - パフォーマンス最適化のイテレーションサイクルを高速化する
+
+<Quiz questions={[
+  {
+    question: "Nsight Copilotが連携して動作するNVIDIAのプロファイリングツールはどれか？",
+    options: [
+      "CUDA Toolkit と Visual Profiler",
+      "Nsight Systems と Nsight Compute",
+      "cuBLAS と cuDNN",
+      "NVML と nvidia-smi"
+    ],
+    answer: 1,
+    explanation: "Nsight Copilotは，システム全体のタイムライン分析を行うNsight Systemsと，カーネルレベルの詳細プロファイリングを行うNsight Computeの2つのツールと連携して動作する．"
+  },
+  {
+    question: "Nsight Copilotの主な役割として正しいものはどれか？",
+    options: [
+      "CUDAカーネルのソースコードを自動生成する",
+      "プロファイリング結果を自然言語で解釈し，最適化の提案を行う",
+      "GPUドライバのバージョンを自動更新する",
+      "CUDAプログラムのコンパイルエラーを自動修正する"
+    ],
+    answer: 1,
+    explanation: "Nsight Copilotは，AIを活用してプロファイリング結果の解釈を自然言語で説明し，ボトルネックの特定や最適化手法の提案を行うツールである．"
+  }
+]} />

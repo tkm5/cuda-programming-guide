@@ -11,6 +11,8 @@ category: "profiling"
 order: 401
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 CUDAランタイムAPIは，GPU開発者がデバイスの性能や制約を効率的に取得するための高レベルインターフェースを提供する．このレクチャーでは，`cudaGetDeviceProperties`関数を中心に，GPUのプロパティ（デバイス名，メモリ容量，最大スレッド数，Compute Capabilityなど）をプログラムから直接クエリする方法を解説する．ホワイトペーパーを読む代わりにAPIで迅速に情報を取得できる利点を学ぶ．
@@ -92,3 +94,39 @@ flowchart TD
 - `cudaGetDeviceProperties`関数で，デバイス名，メモリ容量，SM数，最大スレッド数などの情報をプログラムから直接照会できる
 - ランタイムAPI関数は戻り値ではなくパラメータで結果を返し，実行ステータスをエラーコードとして返す
 - 取得したプロパティは，後続のプロファイリングやパフォーマンス分析で重要な役割を果たす
+
+<Quiz questions={[
+  {
+    question: "GPUのプロパティ（デバイス名，メモリ容量，SM数など）をプログラムから取得するために使用するCUDA関数はどれか？",
+    options: [
+      "cudaGetDeviceCount",
+      "cudaGetDeviceProperties",
+      "cudaDeviceQuery",
+      "cudaGetDeviceInfo"
+    ],
+    answer: 1,
+    explanation: "`cudaGetDeviceProperties`関数は，`cudaDeviceProp`構造体にGPUの各種プロパティ（デバイス名，メモリ容量，SM数，最大スレッド数など）を格納する．"
+  },
+  {
+    question: "CUDAランタイムAPI関数の結果はどのように返されるか？",
+    options: [
+      "戻り値として直接返される",
+      "グローバル変数に格納される",
+      "パラメータを通じて出力され，戻り値はエラーコードとなる",
+      "標準出力に表示される"
+    ],
+    answer: 2,
+    explanation: "CUDAランタイムAPI関数は，結果をパラメータ（ポインタ）を通じて出力する．関数自体の戻り値は実行ステータス（成功時は`cudaSuccess`，失敗時はエラーコード）である．"
+  },
+  {
+    question: "cudaDeviceProp構造体のmultiProcessorCountメンバが示す情報は何か？",
+    options: [
+      "GPUのコア総数",
+      "SM（Streaming Multiprocessor）の数",
+      "ブロックあたりの最大スレッド数",
+      "ワープスケジューラの数"
+    ],
+    answer: 1,
+    explanation: "`multiProcessorCount`はGPU内のSM（Streaming Multiprocessor）の数を示す．SM数はGPUの並列処理能力に直結する重要な指標である．"
+  }
+]} />

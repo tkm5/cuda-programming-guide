@@ -10,6 +10,7 @@ tags: ["gpu-hardware", "cuda"]
 category: "gpu-hardware"
 order: 105
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -52,7 +53,7 @@ graph TD
 
 ### チップの命名規則
 
-Nvidiaのチップ命名は一貫したパターンに従っています：
+NVIDIAのチップ命名は一貫したパターンに従っています：
 
 | アーキテクチャ | チップ名 | 命名パターン |
 |------------|---------|----------|
@@ -65,3 +66,28 @@ Nvidiaのチップ命名は一貫したパターンに従っています：
 - `GPU`はチップにメモリ，インターフェース，冷却機構を統合した消費者向けの最終製品である
 - チップ名にはアーキテクチャを示す文字が含まれている（例：`GF100`のFは`Fermi`，`GA100`のAは`Ampere`）
 - この区別を理解することが，各アーキテクチャの詳細を学ぶための前提となる
+
+<Quiz questions={[
+  {
+    question: "「GPUチップ」と「GPU」の違いとして正しいものはどれですか？",
+    options: [
+      "GPUチップとGPUは同じものを指す",
+      "GPUチップはメモリやインターフェースを含む最終製品である",
+      "GPUチップはシリコンコア単体であり，GPUはチップにメモリやインターフェースを統合した最終製品である",
+      "GPUは設計図であり，GPUチップは実物である"
+    ],
+    answer: 2,
+    explanation: "GPUチップはGPUの心臓部であるシリコンコア（電子チップ）です．GPUはそのチップにグローバルメモリ，ディスプレイポート，冷却ファンなどを統合した，消費者が購入する最終製品です．"
+  },
+  {
+    question: "NVIDIAのチップ名「GA100」のアルファベット部分が意味するものは何ですか？",
+    options: [
+      "Gは「GeForce」，Aは「Advanced」を意味する",
+      "Gは「GPU」，Aは「Ampere」アーキテクチャを意味する",
+      "Gは「Graphics」，Aは「Accelerator」を意味する",
+      "GAは「General Architecture」の略称である"
+    ],
+    answer: 1,
+    explanation: "NVIDIAのチップ命名規則では，Gは「GPU」を意味し，2文字目はアーキテクチャ名の頭文字を示します．GA100のAは「Ampere」，GF100のFは「Fermi」を意味します．"
+  }
+]} />

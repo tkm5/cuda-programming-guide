@@ -10,6 +10,7 @@ tags: ["algorithms", "cuda"]
 category: "algorithms"
 order: 1108
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -105,3 +106,39 @@ GPUカーネルのコードを書く手間はかかるが，Tensor Coreによる
 - 入力は`half`精度，出力は`float`精度の組み合わせが一般的である
 - Naive版と比較して約6.5倍の性能向上が実測された
 - ワープIDの計算とタイル数の検証がカーネル実装の重要なポイントである
+
+<Quiz questions={[
+  {
+    question: "WMMA APIを使った行列積で一般的に使用される入出力のデータ型の組み合わせはどれか？",
+    options: [
+      "入力: float，出力: float",
+      "入力: half，出力: half",
+      "入力: half，出力: float",
+      "入力: double，出力: double"
+    ],
+    answer: 2,
+    explanation: "WMMA APIでは入力（A，B行列）にhalf精度（FP16），出力（C行列）にfloat精度（FP32）を使用するのが一般的である．これにより入力の範囲を超える結果にも対応できる．"
+  },
+  {
+    question: "WMMA版の行列積カーネルにおいて，ブロックサイズ128スレッドの場合，1ブロックあたりのワープ数はいくつか？",
+    options: [
+      "2ワープ",
+      "4ワープ",
+      "8ワープ",
+      "16ワープ"
+    ],
+    answer: 1,
+    explanation: "1ワープは32スレッドで構成されるため，ブロックサイズ128スレッドの場合は128 / 32 = 4ワープとなる．"
+  },
+  {
+    question: "Nsight Computeによる測定で，行列サイズ1024×1024におけるWMMA版のNaive版に対する性能向上はおおよそ何倍か？",
+    options: [
+      "約2倍",
+      "約4倍",
+      "約6.5倍",
+      "約10倍"
+    ],
+    answer: 2,
+    explanation: "Naive版が2,540マイクロ秒，WMMA版が388マイクロ秒であり，約6.5倍の性能向上が実測された．"
+  }
+]} />

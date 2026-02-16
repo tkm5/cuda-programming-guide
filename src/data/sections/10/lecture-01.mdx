@@ -10,6 +10,7 @@ tags: ["performance", "cuda"]
 category: "performance"
 order: 1001
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -87,3 +88,39 @@ Nsight Computeを使用してVector Reductionアプリケーションのroofline
 - `Arithmetic Intensity`（FLOP/Byte）を計算し，遷移点と比較することで最適化の方向性を決定する
 - メモリ律速の場合は`shared memory`やcoalescingなど，計算律速の場合はILPや高速数学関数などの最適化を適用する
 - Nsight Computeのrooflineビューを使って，実アプリケーションの性能を視覚的に評価できる
+
+<Quiz questions={[
+  {
+    question: "Arithmetic Intensity（演算密度）の定義として正しいものはどれか？",
+    options: [
+      "メモリ帯域幅 / 命令スループット（Bytes/FLOP）",
+      "命令スループット / メモリ帯域幅（FLOP/Byte）",
+      "ピーク性能 × メモリ帯域幅（TFLOPS・TB/s）",
+      "ピーク性能 / 実行時間（TFLOPS/s）"
+    ],
+    answer: 1,
+    explanation: "Arithmetic Intensity（AI）は，命令スループット（FLOPS）をメモリ帯域幅（Bytes/s）で割った値（FLOP/Byte）として定義される．この値によってアプリケーションが計算律速かメモリ律速かを判定する．"
+  },
+  {
+    question: "Roofline Analysisで，アプリケーションの実測値が遷移点の左側にプロットされた場合，どのような最適化が適切か？",
+    options: [
+      "命令レベル並列性（ILP）の向上",
+      "高速数学関数の利用",
+      "shared memoryの活用やcoalescing（結合アクセス）",
+      "命令間の依存関係の削減"
+    ],
+    answer: 2,
+    explanation: "遷移点の左側はメモリ律速の領域を示す．メモリ律速の場合は，shared memoryの活用，coalescing（結合アクセス），キャッシュの利用とプリフェッチなどのメモリ最適化手法が適切である．"
+  },
+  {
+    question: "A100 GPUにおけるRoofline Analysisの遷移点（Transition Point）はおおよそいくつか？（ピークFP32性能: 19.5 TFLOPS，メモリ帯域幅: 1.5 TB/s）",
+    options: [
+      "約1.3 FLOP/Byte",
+      "約13 FLOP/Byte",
+      "約130 FLOP/Byte",
+      "約0.13 FLOP/Byte"
+    ],
+    answer: 1,
+    explanation: "遷移点はピークFLOPS / ピーク帯域幅で計算される．19.5 TFLOPS / 1.5 TB/s = 13 FLOP/Byte（概算値）となる．"
+  }
+]} />

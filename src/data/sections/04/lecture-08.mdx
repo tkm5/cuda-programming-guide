@@ -11,6 +11,8 @@ category: "profiling"
 order: 408
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 CUDAアプリケーションのプロファイリング前に，CUDA関数のエラーチェックを確実に行うことが重要である．このレクチャーでは，同期操作と非同期操作の2つのカテゴリにおけるエラーチェック手法を解説し，マクロを用いた効率的なエラーチェックの実装方法を紹介する．
@@ -105,3 +107,39 @@ flowchart TD
 - 同期操作は関数の戻り値で，非同期操作は`cudaGetLastError`でエラーを取得する
 - マクロとインライン関数を使うことで，エラーチェックコードの重複を排除し，ファイル名・行番号付きのエラーメッセージを出力できる
 - エラー発生時に即座に`exit`することで，後続の無意味な処理を防止できる
+
+<Quiz questions={[
+  {
+    question: "カーネル起動（非同期操作）のエラーをチェックするために使用するCUDA関数はどれか？",
+    options: [
+      "cudaGetErrorString",
+      "cudaGetLastError",
+      "cudaCheckError",
+      "cudaDeviceSynchronize"
+    ],
+    answer: 1,
+    explanation: "カーネル起動は非同期操作であるため，`cudaGetLastError`で最後に実行されたCUDA操作のエラーコードを取得する．同期操作（`cudaMalloc`など）は関数の戻り値で直接エラーを取得できる．"
+  },
+  {
+    question: "CUDAのエラーチェックにおいて，同期操作と非同期操作の違いとして正しいものはどれか？",
+    options: [
+      "同期操作はエラーチェック不要，非同期操作のみチェックが必要",
+      "同期操作は戻り値でエラーを取得，非同期操作はcudaGetLastErrorで取得",
+      "同期操作はcudaGetLastErrorで取得，非同期操作は戻り値でエラーを取得",
+      "どちらもcudaGetLastErrorでのみエラーを取得できる"
+    ],
+    answer: 1,
+    explanation: "同期操作（`cudaMalloc`，`cudaMemcpy`など）は関数の戻り値として`cudaError_t`型のエラーコードを返す．非同期操作（カーネル起動）はホストコードをブロックしないため，`cudaGetLastError`でエラーを取得する必要がある．"
+  },
+  {
+    question: "エラーチェックマクロを使用する最大のメリットは何か？",
+    options: [
+      "コンパイル時間が短縮される",
+      "GPUの実行速度が向上する",
+      "ファイル名と行番号付きのエラーメッセージが出力され，問題の特定が容易になる",
+      "エラーが自動的に修正される"
+    ],
+    answer: 2,
+    explanation: "マクロに`__FILE__`と`__LINE__`を含めることで，エラー発生時にファイル名と行番号が出力され，問題箇所の特定が容易になる．また，コードの重複を排除できる．"
+  }
+]} />

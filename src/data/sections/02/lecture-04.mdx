@@ -10,6 +10,7 @@ tags: ["setup", "cuda"]
 category: "setup"
 order: 204
 ---
+import Quiz from '@/components/content/Quiz.astro'
 
 ## 概要
 
@@ -72,3 +73,28 @@ flowchart LR
 - インストール後は`nvcc --version`でコンパイラのバージョンを確認する
 - CUDAツールキットには`nvcc`コンパイラのほか，すべてのライブラリやプロファイリングツールが含まれる
 - 慣れてきたらNVIDIA公式ダウンロードページから最新バージョンを選んでインストールすることも可能である
+
+<Quiz questions={[
+  {
+    question: "Linux環境でCUDAツールキットを最も簡単にインストールするコマンドはどれですか？",
+    options: [
+      "apt install cuda",
+      "sudo apt install nvidia-cuda-toolkit",
+      "pip install cuda-toolkit",
+      "sudo yum install cuda"
+    ],
+    answer: 1,
+    explanation: "sudo apt install nvidia-cuda-toolkitコマンドが初心者にとって最も簡単なインストール方法です．このコマンドでnvccコンパイラに加えて，すべてのライブラリやプロファイリングツールがインストールされます．"
+  },
+  {
+    question: "CUDAツールキットが正しくインストールされたかを確認するコマンドはどれですか？",
+    options: [
+      "cuda --check",
+      "nvidia-smi",
+      "nvcc --version",
+      "cuda-toolkit --status"
+    ],
+    answer: 2,
+    explanation: "nvcc --versionコマンドでCUDAコンパイラのバージョンを確認できます．正常にインストールされていれば，nvcc: NVIDIA (R) Cuda compiler driverという情報とリリースバージョンが表示されます．"
+  }
+]} />

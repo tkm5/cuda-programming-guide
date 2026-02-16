@@ -11,6 +11,8 @@ category: "cuda-basics"
 order: 302
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 CUDAのソフトウェア階層（グリッド，ブロック，ワープ，スレッド）がGPUのハードウェア階層（GPU全体，SM，パーティション，コア）にどのようにマッピングされるかを解説する．CUDAプログラミングの基礎となるホストとデバイスの概念，および`Giga Thread Unit`や`Warp Scheduler`の役割を理解する．
@@ -86,3 +88,39 @@ CUDAアプリケーションを起動する際に指定する2つの重要なパ
 - `Giga Thread Unit`がブロックを各SMに分配し，`Warp Scheduler`がパーティション内のワープ実行を管理する
 - CUDAアプリケーション起動時にはブロック数とブロックあたりのスレッド数を指定する
 - 1ワープは32スレッドで固定であり，ワープ数はブロックサイズを32で割って算出する
+
+<Quiz questions={[
+  {
+    question: "CUDAソフトウェアの4階層（Grid，Block，Warp，Thread）のうち，GPUのSM（Streaming Multiprocessor）に対応するのはどれか？",
+    options: [
+      "Grid",
+      "Block",
+      "Warp",
+      "Thread"
+    ],
+    answer: 1,
+    explanation: "Blockは各SMに割り当てられる．Gridは GPU全体，WarpはSM内のパーティション，Threadはパーティション内の個別コアに対応する．"
+  },
+  {
+    question: "1ワープに含まれるスレッド数はいくつか？",
+    options: [
+      "16",
+      "32",
+      "64",
+      "128"
+    ],
+    answer: 1,
+    explanation: "1ワープは常に32スレッドで固定されている．この値はアーキテクチャに関わらず一定である．"
+  },
+  {
+    question: "ソフトウェアブロックを各SMに分配する役割を担うハードウェアユニットは何か？",
+    options: [
+      "Warp Scheduler",
+      "L2 Cache Controller",
+      "Giga Thread Unit",
+      "Memory Controller"
+    ],
+    answer: 2,
+    explanation: "Giga Thread UnitはGPU全体の中に配置され，すべてのSMと接続して，ソフトウェアブロック（タスク）を各SMに効率的に分配する役割を担う．"
+  }
+]} />

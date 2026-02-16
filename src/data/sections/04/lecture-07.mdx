@@ -11,6 +11,8 @@ category: "profiling"
 order: 407
 ---
 
+import Quiz from '@/components/content/Quiz.astro'
+
 ## 概要
 
 NVIDIAはCUDAアプリケーションのプロファイリングと分析のために7つの主要ツールを提供している．このレクチャーでは各ツールの役割と使い分けを解説し，特にNsightスイート（Nsight Systems，Nsight Compute，Nsight Graphics）の3ツールの関係性と適用場面に焦点を当てる．なお`nvprof`は非推奨となっているため使用を推奨しない．
@@ -57,3 +59,39 @@ flowchart TD
 - Nsight SystemsはシステムレベルでNsight Computeはカーネルレベルの分析に適している
 - Nsight Computeは100,000以上のメトリクスを提供し，SM内の個々のユニットまで詳細に分析できる
 - 用途に応じてNsight Systems（全体俯瞰）とNsight Compute（カーネル詳細）を使い分けることが重要である
+
+<Quiz questions={[
+  {
+    question: "Nsight ComputeとNsight Systemsの違いとして正しいものはどれか？",
+    options: [
+      "Nsight Computeはシステム全体の分析，Nsight Systemsはカーネル単位の分析",
+      "Nsight Computeはカーネル単位の詳細分析，Nsight Systemsはシステム全体の分析",
+      "両方とも同じ機能を提供するが，対応OSが異なる",
+      "Nsight Computeはデバッグ専用，Nsight Systemsはプロファイリング専用"
+    ],
+    answer: 1,
+    explanation: "Nsight Computeは個々のカーネルの詳細分析に特化し，100,000以上のメトリクスを提供する．一方，Nsight Systemsはアプリケーション全体のシステムレベル分析に適しており，CPU-GPU間のインタラクションなどを俯瞰する．"
+  },
+  {
+    question: "NVIDIAのプロファイリングツールのうち，非推奨（使用すべきでない）ツールはどれか？",
+    options: [
+      "Nsight Systems",
+      "Nsight Compute",
+      "CUDA-GDB",
+      "nvprof"
+    ],
+    answer: 3,
+    explanation: "`nvprof`は非推奨となっている．代わりにNsight Systems（システムレベル分析）やNsight Compute（カーネルレベル分析）を使用することが推奨される．"
+  },
+  {
+    question: "Nsight Computeが提供するメトリクスの数はおよそいくつか？",
+    options: [
+      "約1,000",
+      "約10,000",
+      "約100,000以上",
+      "約1,000,000"
+    ],
+    answer: 2,
+    explanation: "Nsight Computeは100,000以上のメトリクスを提供し，グローバルメモリ，キャッシュ，SM内の各ユニットに至るまで，非常に詳細なカーネルレベルの分析が可能である．"
+  }
+]} />
