@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { withBase } from '@/utils/sections'
+---
+
+<BaseLayout title="404 - ページが見つかりません">
+  <main class="flex min-h-[60vh] flex-col items-center justify-center px-4">
+    <h1 class="mb-4 text-6xl font-bold text-muted">404</h1>
+    <p class="mb-8 text-lg text-muted">お探しのページが見つかりませんでした</p>
+    <a
+      href={withBase('/')}
+      class="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent/90"
+    >
+      トップページへ戻る
+    </a>
+  </main>
+</BaseLayout>

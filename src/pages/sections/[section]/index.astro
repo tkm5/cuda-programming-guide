@@ -1,0 +1,65 @@
+---
+import SectionLayout from '@/layouts/SectionLayout.astro'
+import { getSectionGroups, getLecturePath } from '@/utils/sections'
+import { SECTION_TITLES, TOTAL_SECTIONS } from '@/utils/constants'
+import { padSection } from '@/utils/sections'
+
+export function getStaticPaths() {
+  const paths = []
+  for (let i = 1; i <= TOTAL_SECTIONS; i++) {
+    paths.push({ params: { section: padSection(i) } })
+  }
+  return paths
+}
+
+const { section } = Astro.params
+const sectionNumber = parseInt(section!, 10)
+const sectionTitle = SECTION_TITLES[sectionNumber] || `セクション${sectionNumber}`
+
+const sectionGroups = await getSectionGroups()
+const currentGroup = sectionGroups.find((g) => g.sectionNumber === sectionNumber)
+const lectures = currentGroup?.lectures || []
+---
+
+<SectionLayout
+  title={`セクション${sectionNumber}: ${sectionTitle}`}
+  description={`${sectionTitle}の全レクチャー一覧`}
+  sectionNumber={sectionNumber}
+>
+  <p class="mb-8 text-muted">
+    このセクションには {lectures.length} 個のレクチャーがあります．
+  </p>
+
+  <div class="space-y-3">
+    {
+      lectures.map((lecture) => (
+        <a
+          href={getLecturePath(lecture.data.sectionNumber, lecture.data.lectureNumber)}
+          class="group flex items-center gap-4 rounded-lg border border-border p-4 transition-colors hover:border-accent hover:bg-card"
+        >
+          <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card text-xs font-medium text-muted group-hover:bg-accent/10 group-hover:text-accent">
+            {lecture.data.lectureNumber}
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-medium text-foreground group-hover:text-accent">
+              {lecture.data.title}
+            </h3>
+          </div>
+          <svg
+            class="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      ))
+    }
+  </div>
+</SectionLayout>

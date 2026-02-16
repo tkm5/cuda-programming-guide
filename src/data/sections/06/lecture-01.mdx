@@ -1,0 +1,136 @@
+---
+title: "S6-L1: Matrices addition using 2D of blocks and threads"
+description: "2D Indexing - Matrices addition using 2D of blocks and threadsの解説"
+sectionNumber: 6
+sectionTitle: "2D Indexing"
+lectureNumber: 1
+lectureTitle: "Matrices addition using 2D of blocks and threads"
+difficulty: "intermediate"
+tags: ["indexing", "cuda"]
+category: "indexing"
+order: 601
+---
+
+## 概要
+
+このレクチャーでは，1次元のブロック・スレッド構成から2次元構成へ移行し，2つの行列を要素ごとに加算する方法を解説する．2次元スレッド・ブロックのインデックスから行列要素のメモリインデックスへのマッピングが最も重要なポイントである．
+
+## 主要な内容
+
+### 1次元から2次元への拡張
+
+これまでのベクトル加算では，1次元のスレッドとブロックを使用していた．2次元に拡張するには，`blockDim`と`gridDim`にそれぞれ`x`と`y`の2つの次元を指定する．
+
+- `blockDim.x` x `blockDim.y` の積は，Ampereアーキテクチャの場合，最大1024スレッドを超えてはならない
+- 例: `(32, 32)`，`(64, 16)`，`(1, 512)` など，積が1024以下であれば任意の組み合わせが可能
+- `gridDim`にも同様に2次元の値を指定する
+
+### 行列のメモリ配置（Row-Major順序）
+
+行列は2次元だが，メモリは1次元である．Row-Major配置では，各行の要素が連続してメモリに格納される．
+
+```mermaid
+graph LR
+    subgraph "行列A（2次元）"
+        direction TB
+        R0["行0: 4, 7, 9, 12, 15"]
+        R1["行1: 20, 22, 25, 27, 30"]
+    end
+    subgraph "メモリ（1次元）"
+        M["4 | 7 | 9 | 12 | 15 | 20 | 22 | 25 | 27 | 30"]
+    end
+    R0 --> M
+    R1 --> M
+```
+
+2次元の座標 `(i, j)` からメモリインデックスへの変換式は以下の通りである:
+
+```
+index = j * row_size + i
+```
+
+例えば，値`25`の座標が `(i=3, j=1)` で行サイズが5の場合:
+
+```
+index = 1 * 5 + 3 = 8
+```
+
+### スレッドID・ブロックIDからインデックスへのマッピング
+
+2次元のスレッドとブロックを使用する場合，各次元でインデックスを計算する:
+
+```cuda
+// X方向のインデックス（行列内の列位置）
+int ix = threadIdx.x + blockDim.x * blockIdx.x;
+
+// Y方向のインデックス（行列内の行位置）
+int iy = threadIdx.y + blockDim.y * blockIdx.y;
+
+// 1次元メモリインデックスへの変換
+int index = iy * nx + ix;
+```
+
+```mermaid
+flowchart TD
+    A["threadIdx.x, blockIdx.x"] --> B["ix = threadIdx.x + blockDim.x * blockIdx.x"]
+    C["threadIdx.y, blockIdx.y"] --> D["iy = threadIdx.y + blockDim.y * blockIdx.y"]
+    B --> E["index = iy * nx + ix"]
+    D --> E
+    E --> F["メモリアクセス: A[index]"]
+```
+
+### グリッドサイズの計算
+
+行列サイズに応じてグリッドサイズを自動計算する:
+
+```cuda
+dim3 blockDim(32, 32);
+dim3 gridDim(
+    (nx + blockDim.x - 1) / blockDim.x,
+    (ny + blockDim.y - 1) / blockDim.y
+);
+```
+
+総スレッド数が行列の総要素数と一致することを保証する必要がある．
+
+## コード例
+
+```cuda
+__global__ void matrixAdd(float *A, float *B, float *C, int nx, int ny) {
+    int ix = threadIdx.x + blockDim.x * blockIdx.x;
+    int iy = threadIdx.y + blockDim.y * blockIdx.y;
+    int index = iy * nx + ix;
+
+    if (ix < nx && iy < ny) {
+        C[index] = A[index] + B[index];
+    }
+}
+
+int main() {
+    int nx = 4096, ny = 4096;
+    size_t size = nx * ny * sizeof(float);
+
+    // ホスト・デバイスメモリの確保，データ転送（省略）
+
+    dim3 block(32, 32);
+    dim3 grid((nx + block.x - 1) / block.x,
+              (ny + block.y - 1) / block.y);
+
+    matrixAdd<<<grid, block>>>(d_A, d_B, d_C, nx, ny);
+
+    // 結果の転送，メモリ解放（省略）
+}
+```
+
+### ブロックサイズとオキュパンシの関係
+
+- `(32, 32)` = 1024スレッド/ブロック: オキュパンシ約50%，1SM当たり1ブロックのみ実行可能
+- `(16, 16)` = 256スレッド/ブロック: オキュパンシ約74%，1SM当たり6ブロック実行可能
+- ブロックサイズを小さくすると，より多くのブロックが同時実行でき，オキュパンシが向上する場合がある
+
+## まとめ
+
+- 2次元行列は，Row-Major順序で1次元メモリに格納される
+- `ix`と`iy`をスレッド・ブロックIDから計算し，`index = iy * nx + ix`で1次元メモリインデックスに変換する
+- ブロックサイズの選択はオキュパンシと実行性能に直接影響する
+- 総スレッド数が行列の総要素数と一致するようにグリッドサイズを計算する必要がある

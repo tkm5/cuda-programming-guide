@@ -1,0 +1,54 @@
+---
+title: "S2-L2: Installing CUDA on Windows"
+description: "Installing Cuda and other programs - Installing CUDA on Windowsの解説"
+sectionNumber: 2
+sectionTitle: "Installing Cuda and other programs"
+lectureNumber: 2
+lectureTitle: "Installing CUDA on Windows"
+difficulty: "beginner"
+tags: ["setup", "cuda"]
+category: "setup"
+order: 202
+---
+
+## 概要
+
+Windows環境でCUDAプログラミングを始めるには，まずVisual Studioをインストールし，その後にCUDAツールキットをインストールする必要がある．このレクチャーでは，Visual StudioとCUDAツールキットのインストール手順を順を追って解説する．
+
+## 主要な内容
+
+### Visual Studioのインストール
+
+CUDAをWindows上で使用するには，まずVisual Studioをエディタ兼コンパイラとしてインストールする．Visual StudioのWebサイトからEnterprise版の実行ファイルをダウンロードし，起動する．開発ツールの選択画面で「C/C++」関連のワークロードを選択する．インストールには約21GBのディスク容量が必要なため，Cドライブに十分な空きがあることを確認しておく．インストール完了までおよそ20分程度かかる．
+
+### CUDAツールキットのインストール
+
+Visual Studioのインストールが完了した後に，CUDAツールキットをインストールする．NVIDIAの公式サイトからダウンロードページにアクセスし，以下の手順で進める．
+
+1. オペレーティングシステム（Windows）を選択
+2. Windows 11などのバージョンを選択
+3. ローカル版（約3GB）をダウンロード
+4. ダウンロード完了後，実行ファイルを起動
+5. ライセンス条項に同意し，Express（推奨）またはCustomを選択
+6. インストールを開始（3-5分程度でシステム互換性チェック後にインストールが進行）
+
+Visual Studioをインストールしてからでないと，CUDAツールキットが正しく統合されない点に注意が必要である．
+
+### GeForce Experienceの確認
+
+インストール完了後，GeForce Experienceを起動してGPU情報やドライバのバージョンを確認できる．NVIDIAアカウントでログインし，ドライバのバージョンが最新であることを確かめる．CUDAプログラミングでは適切なドライバが必要なため，常に最新のドライバを維持することが重要である．
+
+```mermaid
+flowchart LR
+    A[Visual Studio インストール] --> B[CUDA Toolkit ダウンロード]
+    B --> C[CUDA Toolkit インストール]
+    C --> D[GeForce Experience で確認]
+    D --> E[CUDA プログラミング開始]
+```
+
+## まとめ
+
+- Visual Studioを先にインストールし，その後にCUDAツールキットをインストールする順序が重要である
+- CUDAツールキットのインストールにはExpress（全機能）とCustom（選択式）の2つのオプションがある
+- GeForce Experienceでドライバのバージョンや搭載GPUの情報を確認できる
+- ディスク容量の確保（Visual Studio約21GB＋CUDAツールキット）が事前に必要である

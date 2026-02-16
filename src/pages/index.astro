@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getSectionGroups } from '@/utils/sections'
+import { getSectionPath } from '@/utils/sections'
+import { SITE_TITLE, SITE_DESCRIPTION, SECTION_CATEGORIES } from '@/utils/constants'
+
+const sectionGroups = await getSectionGroups()
+
+const categoryLabels: Record<string, string> = {
+  'gpu-hardware': 'GPUハードウェア',
+  setup: 'セットアップ',
+  'cuda-basics': 'CUDA基礎',
+  profiling: 'プロファイリング',
+  performance: 'パフォーマンス',
+  indexing: 'インデックス',
+  'memory-optimization': 'メモリ最適化',
+  debugging: 'デバッグ',
+  algorithms: 'アルゴリズム',
+}
+
+const categoryColors: Record<string, string> = {
+  'gpu-hardware': 'bg-green-500/10 text-green-500',
+  setup: 'bg-blue-500/10 text-blue-500',
+  'cuda-basics': 'bg-purple-500/10 text-purple-500',
+  profiling: 'bg-orange-500/10 text-orange-500',
+  performance: 'bg-red-500/10 text-red-500',
+  indexing: 'bg-cyan-500/10 text-cyan-500',
+  'memory-optimization': 'bg-yellow-500/10 text-yellow-500',
+  debugging: 'bg-pink-500/10 text-pink-500',
+  algorithms: 'bg-indigo-500/10 text-indigo-500',
+}
+---
+
+<BaseLayout title="" description={SITE_DESCRIPTION}>
+  <main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Hero -->
+    <section class="mb-16 text-center">
+      <h1 class="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+        {SITE_TITLE}
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg text-muted">
+        {SITE_DESCRIPTION}
+      </p>
+      <div class="mt-6 flex justify-center gap-4 text-sm text-muted">
+        <span>全12セクション</span>
+        <span>60レクチャー</span>
+        <span>2クイズ</span>
+      </div>
+    </section>
+
+    <!-- Section Cards -->
+    <section>
+      <h2 class="mb-8 text-xl font-semibold">コース内容</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          sectionGroups.map((section) => {
+            const category = SECTION_CATEGORIES[section.sectionNumber] || 'gpu-hardware'
+            const categoryLabel = categoryLabels[category] || category
+            const colorClass = categoryColors[category] || categoryColors['gpu-hardware']
+
+            return (
+              <a
+                href={getSectionPath(section.sectionNumber)}
+                class="group flex flex-col rounded-lg border border-border p-5 transition-all hover:border-accent hover:bg-card"
+              >
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="text-xs font-medium text-muted">
+                    セクション {section.sectionNumber}
+                  </span>
+                  <span class:list={['rounded-full px-2 py-0.5 text-xs', colorClass]}>
+                    {categoryLabel}
+                  </span>
+                </div>
+                <h3 class="mb-2 text-sm font-semibold text-foreground group-hover:text-accent">
+                  {section.sectionTitle}
+                </h3>
+                <p class="mt-auto text-xs text-muted">
+                  {section.lectures.length} レクチャー
+                </p>
+              </a>
+            )
+          })
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

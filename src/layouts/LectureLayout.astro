@@ -1,0 +1,98 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Sidebar from '@/components/layout/Sidebar.astro'
+import Breadcrumb from '@/components/layout/Breadcrumb.astro'
+import LectureRef from '@/components/content/LectureRef.astro'
+import LectureNav from '@/components/navigation/LectureNav.astro'
+import TableOfContents from '@/components/navigation/TableOfContents.astro'
+import ScrollToTop from '@/components/ui/ScrollToTop.astro'
+import type { MarkdownHeading } from 'astro'
+import type { NavItem } from '@/utils/navigation'
+
+interface Props {
+  title: string
+  description: string
+  sectionNumber: number
+  lectureNumber: number
+  lectureTitle: string
+  headings: MarkdownHeading[]
+  prev: NavItem | null
+  next: NavItem | null
+}
+
+const {
+  title,
+  description,
+  sectionNumber,
+  lectureNumber,
+  lectureTitle,
+  headings,
+  prev,
+  next,
+} = Astro.props
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex">
+    <Sidebar currentSection={sectionNumber} currentLecture={lectureNumber} />
+    <main class="min-w-0 flex-1 lg:ml-[280px]">
+      <div class="mx-auto flex max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:px-8">
+        <article class="min-w-0 flex-1">
+          <Breadcrumb
+            sectionNumber={sectionNumber}
+            lectureNumber={lectureNumber}
+            lectureTitle={lectureTitle}
+          />
+          <LectureRef
+            sectionNumber={sectionNumber}
+            lectureNumber={lectureNumber}
+          />
+          <h1 class="mb-6 text-2xl font-bold leading-tight sm:text-3xl">
+            {title}
+          </h1>
+          <div class="prose">
+            <slot />
+          </div>
+          <LectureNav prev={prev} next={next} />
+        </article>
+        <TableOfContents headings={headings} />
+      </div>
+    </main>
+  </div>
+  <ScrollToTop />
+  <script>
+    async function initMermaid() {
+      const preBlocks = document.querySelectorAll('pre[data-language="mermaid"]')
+      if (preBlocks.length === 0) return
+
+      const { default: mermaid } = await import('mermaid')
+      const isDark = document.documentElement.classList.contains('dark')
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'default',
+        themeVariables: isDark
+          ? { primaryColor: '#3b82f6', primaryBorderColor: '#60a5fa' }
+          : {},
+      })
+
+      const containers: HTMLElement[] = []
+      preBlocks.forEach((pre, i) => {
+        const container = document.createElement('div')
+        container.className = 'mermaid'
+        container.id = `mermaid-graph-${Date.now()}-${i}`
+        container.textContent = pre.textContent || ''
+        if (pre.parentNode) {
+          pre.parentNode.replaceChild(container, pre)
+          containers.push(container)
+        }
+      })
+
+      if (containers.length > 0) {
+        await mermaid.run({ nodes: containers })
+      }
+    }
+
+    initMermaid()
+    document.addEventListener('astro:page-load', initMermaid)
+  </script>
+</BaseLayout>

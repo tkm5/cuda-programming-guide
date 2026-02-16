@@ -1,0 +1,34 @@
+{
+  "name": "cuda-programming-guide",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/mdx": "^4.2.0",
+    "@astrojs/sitemap": "^3.3.0",
+    "astro": "^5.7.0",
+    "astro-mermaid": "^1.3.0",
+    "mermaid": "^11.12.2",
+    "typescript": "^5.8.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "svgo>css-tree": "3.0.1"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  }
+}

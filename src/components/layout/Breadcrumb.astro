@@ -1,0 +1,56 @@
+---
+import { SECTION_TITLES } from '@/utils/constants'
+import { getSectionPath, withBase } from '@/utils/sections'
+
+interface Props {
+  sectionNumber?: number
+  lectureNumber?: number
+  lectureTitle?: string
+}
+
+const { sectionNumber, lectureNumber, lectureTitle } = Astro.props
+
+const items: { label: string; href?: string }[] = [{ label: 'ホーム', href: withBase('/') }]
+
+if (sectionNumber) {
+  const sectionTitle = SECTION_TITLES[sectionNumber] || `セクション${sectionNumber}`
+  items.push({
+    label: `セクション${sectionNumber}: ${sectionTitle}`,
+    href: lectureNumber ? getSectionPath(sectionNumber) : undefined,
+  })
+}
+
+if (sectionNumber && lectureNumber && lectureTitle) {
+  items.push({
+    label: `レクチャー${lectureNumber}: ${lectureTitle}`,
+  })
+}
+---
+
+<nav aria-label="パンくずリスト" class="mb-4 text-sm">
+  <ol class="flex flex-wrap items-center gap-1 text-muted">
+    {
+      items.map((item, i) => (
+        <li class="flex items-center gap-1">
+          {i > 0 && (
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          )}
+          {item.href ? (
+            <a href={item.href} class="hover:text-foreground">
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-foreground">{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

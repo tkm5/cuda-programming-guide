@@ -1,0 +1,14 @@
+---
+interface Props {
+  sectionNumber: number
+  lectureNumber: number
+}
+
+const { sectionNumber, lectureNumber } = Astro.props
+---
+
+<div class="mb-6 flex items-center gap-3">
+  <span class="inline-flex items-center rounded-md bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+    セクション{sectionNumber} レクチャー{lectureNumber}
+  </span>
+</div>

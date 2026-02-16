@@ -1,0 +1,70 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3)
+---
+
+{
+  filteredHeadings.length > 0 && (
+    <aside class="hidden xl:block">
+      <div class="sticky top-20 w-[220px]">
+        <h2 class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
+          目次
+        </h2>
+        <ul class="space-y-1 border-l border-border">
+          {filteredHeadings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class:list={[
+                  'toc-link block border-l-2 border-transparent py-1 text-xs text-muted transition-colors hover:border-accent hover:text-foreground',
+                  heading.depth === 2 ? 'pl-3' : 'pl-6',
+                ]}
+                data-heading={heading.slug}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  // Intersection Observer for active heading tracking
+  const links = document.querySelectorAll('.toc-link')
+  const headingElements = Array.from(links)
+    .map((link) => {
+      const id = link.getAttribute('data-heading')
+      return id ? document.getElementById(id) : null
+    })
+    .filter(Boolean) as HTMLElement[]
+
+  if (headingElements.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            links.forEach((link) => {
+              link.classList.remove('!border-accent', '!text-foreground')
+            })
+            const activeLink = document.querySelector(
+              `.toc-link[data-heading="${entry.target.id}"]`
+            )
+            activeLink?.classList.add('!border-accent', '!text-foreground')
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -80% 0px' }
+    )
+
+    headingElements.forEach((el) => observer.observe(el))
+  }
+</script>

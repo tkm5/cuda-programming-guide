@@ -1,0 +1,167 @@
+---
+interface Question {
+  question: string
+  options: string[]
+  answer: number
+  explanation: string
+}
+
+interface Props {
+  questions: Question[]
+}
+
+const { questions } = Astro.props
+const labels = ['A', 'B', 'C', 'D']
+---
+
+<section class="quiz-section mt-12 rounded-xl border-2 border-accent/30 bg-accent/5 p-6">
+  <h2 class="mt-0 mb-6 flex items-center gap-3 text-xl font-bold text-foreground">
+    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">?</span>
+    理解度チェック
+  </h2>
+  <p class="mb-6 text-sm text-muted">
+    各問題の選択肢をクリックして，このレクチャーの理解度を確認しましょう．
+  </p>
+
+  {questions.map((q, i) => (
+    <div
+      class="quiz-question mb-6 rounded-lg border border-border bg-background p-5 last:mb-0"
+      data-answer={q.answer}
+    >
+      <p class="mb-4 font-medium text-foreground">
+        <span class="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
+          {i + 1}
+        </span>
+        {q.question}
+      </p>
+      <div class="grid gap-2">
+        {q.options.map((opt, j) => (
+          <button
+            class="quiz-option flex items-center gap-3 rounded-lg border border-border px-4 py-3 text-left text-sm transition-all hover:border-accent/50 hover:bg-accent/5"
+            data-index={j}
+          >
+            <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-current text-xs font-bold">
+              {labels[j]}
+            </span>
+            <span>{opt}</span>
+          </button>
+        ))}
+      </div>
+      <div class="quiz-explanation mt-3 hidden rounded-lg border-l-4 border-accent bg-card p-3 text-sm text-muted">
+        {q.explanation}
+      </div>
+    </div>
+  ))}
+
+  <div class="quiz-score mt-6 hidden rounded-lg border-2 border-accent bg-accent/10 p-4 text-center">
+    <p class="text-lg font-bold text-foreground">
+      スコア: <span class="score-value text-accent">0</span> / {questions.length}
+    </p>
+    <p class="mt-1 text-sm text-muted score-message"></p>
+  </div>
+</section>
+
+<style is:global>
+  .quiz-option.correct {
+    border-color: var(--color-success) !important;
+    background-color: color-mix(in srgb, var(--color-success) 12%, transparent) !important;
+  }
+
+  .quiz-option.correct span:first-child {
+    background-color: var(--color-success);
+    color: white;
+    border-color: var(--color-success);
+  }
+
+  .quiz-option.incorrect {
+    border-color: var(--color-danger) !important;
+    background-color: color-mix(in srgb, var(--color-danger) 12%, transparent) !important;
+  }
+
+  .quiz-option.incorrect span:first-child {
+    background-color: var(--color-danger);
+    color: white;
+    border-color: var(--color-danger);
+  }
+
+  .quiz-option:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .quiz-option.correct:disabled,
+  .quiz-option.incorrect:disabled {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  function initQuiz() {
+    document.querySelectorAll('.quiz-section').forEach((el) => {
+      const section = el as HTMLElement
+      if (section.dataset.initialized) return
+      section.dataset.initialized = 'true'
+
+      const questions = section.querySelectorAll('.quiz-question')
+      let answered = 0
+      let correct = 0
+      const total = questions.length
+
+      questions.forEach((q) => {
+        const answer = parseInt((q as HTMLElement).dataset.answer || '0', 10)
+        const options = q.querySelectorAll('.quiz-option')
+        const explanation = q.querySelector('.quiz-explanation')
+
+        options.forEach((opt, i) => {
+          opt.addEventListener('click', () => {
+            if ((opt as HTMLButtonElement).disabled) return
+
+            options.forEach((o) => {
+              ;(o as HTMLButtonElement).disabled = true
+            })
+
+            if (i === answer) {
+              opt.classList.add('correct')
+              correct++
+            } else {
+              opt.classList.add('incorrect')
+              options[answer].classList.add('correct')
+            }
+
+            if (explanation) {
+              explanation.classList.remove('hidden')
+            }
+
+            answered++
+            if (answered === total) {
+              const scoreEl = section.querySelector('.quiz-score')
+              const scoreValue = section.querySelector('.score-value')
+              const scoreMessage = section.querySelector('.score-message')
+              if (scoreEl && scoreValue) {
+                scoreValue.textContent = correct.toString()
+                scoreEl.classList.remove('hidden')
+              }
+              if (scoreMessage) {
+                const ratio = correct / total
+                if (ratio === 1) {
+                  scoreMessage.textContent = '全問正解！素晴らしいです！'
+                } else if (ratio >= 0.8) {
+                  scoreMessage.textContent = 'よくできました！'
+                } else if (ratio >= 0.6) {
+                  scoreMessage.textContent = 'もう一度復習してみましょう．'
+                } else {
+                  scoreMessage.textContent =
+                    'レクチャーをもう一度確認することをおすすめします．'
+                }
+              }
+            }
+          })
+        })
+      })
+    })
+  }
+
+  initQuiz()
+  document.addEventListener('astro:page-load', initQuiz)
+</script>

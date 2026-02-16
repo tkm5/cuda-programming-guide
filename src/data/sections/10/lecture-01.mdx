@@ -1,0 +1,89 @@
+---
+title: "S10-L1: Roofline Analysis :(Compute and Memory bounds apps)"
+description: "Roofline model - Roofline Analysis :(Compute and Memory bounds apps)の解説"
+sectionNumber: 10
+sectionTitle: "Roofline model"
+lectureNumber: 1
+lectureTitle: "Roofline Analysis :(Compute and Memory bounds apps)"
+difficulty: "advanced"
+tags: ["performance", "cuda"]
+category: "performance"
+order: 1001
+---
+
+## 概要
+
+Roofline Analysisは，GPUアプリケーションが「計算律速（Compute Bound）」か「メモリ律速（Memory Bound）」かを判定し，適切な最適化の方向性を決定するための手法である．本レクチャーでは，`Arithmetic Intensity`（演算密度）の概念を導入し，ピーク性能と実測値を比較して最適化パスを選択する方法を解説する．
+
+## 主要な内容
+
+### 性能評価に必要な2つのメトリクス
+
+GPUアプリケーションの性能を評価するには，以下の2つの指標が必要である．
+
+- メモリ帯域幅（Memory Bandwidth）: 1秒あたりに何GB（またはTB）のデータにアクセスできるか
+- 命令スループット（Instructions Throughput）: 各データ型に対して1秒あたり何演算を実行できるか
+
+例えば，A100 GPUのホワイトペーパーでは，FP32（非Tensor Core）のピーク性能が19.5 TFLOPS，メモリ帯域幅が1.5 TB/sと記載されている．これらはピーク値であり，実アプリケーションはこの値以下の性能を示す．
+
+### Arithmetic Intensity（演算密度）
+
+メモリ帯域幅と命令スループットを統合する新しいメトリクスが`Arithmetic Intensity`（AI）である．
+
+```
+AI = 命令スループット（FLOPS） / メモリ帯域幅（Bytes/s） = FLOP/Byte
+```
+
+- AIが高い場合: 演算量がメモリ移動量に対して大きい → メモリの最適化に注力
+- AIが低い場合: メモリ移動量が演算量に対して大きい → 計算の最適化に注力
+- 遷移点（Transition Point）: ピークFLOPSとピーク帯域幅の両方を達成する理想的な点
+
+遷移点は以下の式で求まる．
+
+```
+遷移点 = ピークFLOPS / ピーク帯域幅
+```
+
+A100の場合: 19.5 TFLOPS / 1.5 TB/s = 13 FLOP/Byte（概算値）
+
+### Rooflineグラフの描き方
+
+性能（TFLOPS）は以下の式で表される．
+
+```
+性能 = min(ピーク性能, AI × メモリ帯域幅)
+```
+
+```mermaid
+graph LR
+    A[AIを横軸に設定] --> B[AI × 帯域幅の直線を描画]
+    B --> C[ピーク性能の水平線を描画]
+    C --> D[遷移点で2本の線が交わる]
+    D --> E[アプリケーションの実測値をプロット]
+    E --> F{遷移点の左か右か}
+    F -->|左| G[メモリ律速 → メモリ最適化]
+    F -->|右| H[計算律速 → 計算最適化]
+```
+
+### 最適化の方向性
+
+メモリ律速の場合の最適化手法:
+- メモリアクセスの`coalescing`（結合アクセス）
+- `shared memory`の活用
+- キャッシュの利用とプリフェッチ
+
+計算律速の場合の最適化手法:
+- 命令レベル並列性（ILP）の向上
+- 高速数学関数の利用
+- 命令間の依存関係の削減
+
+### 実践例: Vector Reductionのプロファイリング
+
+Nsight Computeを使用してVector Reductionアプリケーションのroofline analysisを実行すると，DRAM，L2キャッシュ，L1キャッシュの各レベルでrooflineグラフを確認できる．ベースライン版（AI = 0.12）から最適化版（AI = 0.66）へ改善することで，AIが約5倍向上し，性能も向上した．
+
+## まとめ
+
+- Roofline Analysisはアプリケーションが計算律速かメモリ律速かを判定するための手法である
+- `Arithmetic Intensity`（FLOP/Byte）を計算し，遷移点と比較することで最適化の方向性を決定する
+- メモリ律速の場合は`shared memory`やcoalescingなど，計算律速の場合はILPや高速数学関数などの最適化を適用する
+- Nsight Computeのrooflineビューを使って，実アプリケーションの性能を視覚的に評価できる

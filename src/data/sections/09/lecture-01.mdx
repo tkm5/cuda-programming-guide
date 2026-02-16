@@ -1,0 +1,87 @@
+---
+title: "S9-L1: Vector Reduction using global memory only (baseline)"
+description: "Vector Reduction - Vector Reduction using global memory only (baseline)の解説"
+sectionNumber: 9
+sectionTitle: "Vector Reduction"
+lectureNumber: 1
+lectureTitle: "Vector Reduction using global memory only (baseline)"
+difficulty: "advanced"
+tags: ["algorithms", "cuda"]
+category: "algorithms"
+order: 901
+---
+
+## 概要
+
+ベクトルリダクションの基本概念と，グローバルメモリのみを使用したベースライン実装を解説する．ベクトル内のすべての要素を加算して1つの値にまとめるツリーベースアプローチの仕組みと，複数ブロックにまたがる場合のカーネル分割戦略について学ぶ．
+
+## 主要な内容
+
+### ベクトルリダクションとは
+
+ベクトルリダクションとは，1つのベクトル内のすべての要素を加算し，その合計値を先頭位置に格納する操作である．ベクトル加算（2つのベクトルの対応要素を加算）とは異なり，1つのベクトルを対象とする点が特徴的である．行列積などの応用にも必要となる重要な操作である．
+
+### ツリーベースアプローチ
+
+リダクション処理は複数ステップで行われる．各ステップで隣接する2要素を加算し，使用するスレッド数を半減させていく．
+
+```mermaid
+graph TD
+    A["ステップ1: 16要素 → 8スレッド使用"] --> B["ステップ2: 8要素 → 4スレッド使用"]
+    B --> C["ステップ3: 4要素 → 2スレッド使用"]
+    C --> D["ステップ4: 2要素 → 1スレッド使用"]
+    D --> E["最終結果: 1要素"]
+```
+
+各ステップではストライドが変化する．ステップ1ではストライド1，ステップ2ではストライド2，ステップ3ではストライド4と倍増していく．
+
+### 偶数スレッドIDのフィルタリング
+
+各ステップで実際に作業するスレッドは偶数IDのみである．このフィルタリングには剰余演算（`%`）を使用する．
+
+```cuda
+if (tid % (2 * stride) == 0) {
+    input[index] = input[index] + input[index + stride];
+}
+```
+
+また，境界チェックとして `index + stride < n` の条件も必要となる．ベクトルサイズを超えたメモリアクセスを防止するためである．
+
+### 複数ブロックと部分和
+
+ベクトル全体を1ブロックで処理できない場合，複数ブロックに分割する．各ブロックはベクトルの一部分を担当し，部分和（`partial sum`）を出力する．ブロック間にはグローバル同期機構がないため，カーネルを複数回起動して解決する．
+
+```mermaid
+flowchart LR
+    K1["カーネル1: 全ブロック実行"] --> Sync["カーネル同期"]
+    Sync --> K2["カーネル2: 部分和を集約"]
+    K2 --> Result["最終結果"]
+```
+
+## コード例
+
+```cuda
+__global__ void reduce_in_place(float* input, int n) {
+    int tid = threadIdx.x;
+    int index = blockDim.x * blockIdx.x + threadIdx.x;
+
+    for (int stride = 1; stride < blockDim.x; stride *= 2) {
+        if (tid % (2 * stride) == 0 && (index + stride) < n) {
+            input[index] += input[index + stride];
+        }
+        __syncthreads();
+    }
+
+    // 部分和をブロック先頭に集約
+    if (tid == 0) {
+        input[blockIdx.x * blockDim.x] = input[index];
+    }
+}
+```
+
+## まとめ
+
+- ベクトルリダクションは全要素の合計を1つの値にまとめる操作で，ツリーベースアプローチにより各ステップでスレッド数を半減させる
+- 偶数スレッドIDのフィルタリングと境界チェックにより正しいメモリアクセスを保証する
+- ブロック間同期が存在しないため，複数カーネルの起動で部分和を段階的に集約する
+- このベースライン実装はグローバルメモリのみを使用しており，後続のレクチャーで最適化を施す

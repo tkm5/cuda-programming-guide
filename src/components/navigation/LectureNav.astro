@@ -1,0 +1,39 @@
+---
+import type { NavItem } from '@/utils/navigation'
+
+interface Props {
+  prev: NavItem | null
+  next: NavItem | null
+}
+
+const { prev, next } = Astro.props
+---
+
+<nav class="mt-12 grid grid-cols-1 gap-4 border-t border-border pt-8 sm:grid-cols-2" aria-label="前後のレクチャー">
+  {prev ? (
+    <a
+      href={prev.path}
+      class="group flex flex-col rounded-lg border border-border p-4 transition-colors hover:border-accent hover:bg-card"
+    >
+      <span class="text-xs text-muted">前のレクチャー</span>
+      <span class="mt-1 text-sm font-medium text-foreground group-hover:text-accent">
+        S{prev.sectionNumber}-L{prev.lectureNumber}: {prev.title}
+      </span>
+    </a>
+  ) : (
+    <div />
+  )}
+  {next ? (
+    <a
+      href={next.path}
+      class="group flex flex-col items-end rounded-lg border border-border p-4 text-right transition-colors hover:border-accent hover:bg-card"
+    >
+      <span class="text-xs text-muted">次のレクチャー</span>
+      <span class="mt-1 text-sm font-medium text-foreground group-hover:text-accent">
+        S{next.sectionNumber}-L{next.lectureNumber}: {next.title}
+      </span>
+    </a>
+  ) : (
+    <div />
+  )}
+</nav>

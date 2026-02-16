@@ -1,0 +1,62 @@
+---
+title: "S1-L6: The architectures and the corresponding chips"
+description: "Introduction to the Nvidia GPUs hardware - The architectures and the corresponding chipsの解説"
+sectionNumber: 1
+sectionTitle: "Introduction to the Nvidia GPUs hardware"
+lectureNumber: 6
+lectureTitle: "The architectures and the corresponding chips"
+difficulty: "beginner"
+tags: ["gpu-hardware", "cuda"]
+category: "gpu-hardware"
+order: 106
+---
+
+## 概要
+
+このレクチャーでは，各GPUアーキテクチャ内で複数のチップがリリースされること，そして各チップがどのような市場セグメント向けのGPU製品に使用されるかを解説します．同じアーキテクチャのチップでもHPC向けと一般消費者向けで異なるチップが使い分けられる仕組みを学びます．
+
+## 主要な内容
+
+### アーキテクチャ内の複数チップ
+
+各Nvidia GPUアーキテクチャでは，複数のチップがリリースされます．各チップは独自の仕様を持ちますが，同じ基盤アーキテクチャを共有しています．
+
+例えば`Ampere`アーキテクチャには以下のチップが含まれます：
+
+```mermaid
+graph TD
+    AMP[Ampere アーキテクチャ] --> GA100[GA100]
+    AMP --> GA102[GA102]
+    AMP --> GA103[GA103 ...]
+    GA100 --> A100[A100 GPU（HPC向け）]
+    GA102 --> RTX[GeForce RTX シリーズ（消費者向け）]
+```
+
+チップ名の「A」は`Ampere`アーキテクチャを示しています．
+
+### チップと市場セグメント
+
+- `GA100`チップ：主にHPC向けのGPU製造に使用．代表例は`A100` GPU（`Tesla`世代，スーパーコンピュータやHPCサーバーで使用）．`TechPowerUp`で確認すると，このチップを使ったGPUには冷却ファンがないものが多い
+- `GA102`チップ：主に一般消費者やゲーマー向けのGPU製造に使用．`GeForce RTX`シリーズなど，冷却ファンを搭載したGPUが多い
+
+### チップのバージョン違い
+
+Nvidiaは同じチップの異なるバージョンをリリースすることがあります．例えば`GA102`チップの場合：
+
+| バージョン | 用途 | ラベル |
+|----------|------|-------|
+| 100〜350 | ゲーム市場向け | 一般消費者版 |
+| 890 | HPC向け | HPC指向版 |
+
+このように，同じチップでも異なるバージョンが異なる市場向けに最適化されています．
+
+### 周波数の違い
+
+各チップおよびチップバージョンは，GPUモデルやメーカーによって異なる速度（周波数）で動作することがあります．これはNvidiaがGPUチップとライセンスを市場の様々な企業に提供しているためです．その結果，各企業は周波数などに若干の違いがあるGPUを製造する場合があります．
+
+## まとめ
+
+- 1つのアーキテクチャから複数のチップがリリースされ，それぞれ異なる市場セグメント向けのGPU製造に使用される
+- 一部のチップはHPC向け（例：`GA100`），他のチップは一般消費者向け（例：`GA102`）に特化している
+- 同じチップでもHPC版と消費者版のバージョン違いが存在することがある
+- チップの動作周波数はGPUモデルやメーカーによって異なる場合がある

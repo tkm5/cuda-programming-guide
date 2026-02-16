@@ -1,0 +1,100 @@
+---
+title: "S4-L9: Nsight Compute performance using command line analysis"
+description: "Profiling - Nsight Compute performance using command line analysisの解説"
+sectionNumber: 4
+sectionTitle: "Profiling"
+lectureNumber: 9
+lectureTitle: "Nsight Compute performance using command line analysis"
+difficulty: "intermediate"
+tags: ["profiling", "cuda"]
+category: "profiling"
+order: 409
+---
+
+## 概要
+
+Nsight Computeはコマンドライン分析とGUI分析の2つの方法を提供する．このレクチャーでは，コマンドライン分析（`ncu`コマンド）を用いて，セクションの選択，メトリクスの収集，CSV形式でのエクスポートなど，実践的なプロファイリング手法を解説する．100,000以上のメトリクスの構造と読み方を体系的に整理する．
+
+## 主要な内容
+
+### セクションの概念
+
+`ncu`コマンドのデフォルト実行では4つのセクションが表示される．
+
+- GPU Speed of Light: DRAMスループット，L1/L2キャッシュスループット，SM使用率
+- Launch Statistics: ブロックサイズ，グリッドサイズ，スレッドあたりのレジスタ数，共有メモリサイズ
+- Occupancy: 各制約値と理論的・達成オキュパンシー
+- GPU and Memory Workload Distribution: DRAM，L1/L2キャッシュのアクティブサイクル
+
+Nsight Computeには合計23以上のセクションが用意されており，特定のセクションのみを表示することもできる．
+
+```bash
+# 特定のセクションのみ表示
+ncu --section LaunchStats ./executable
+ncu --section WarpStateStats ./executable
+```
+
+### メトリクス名の構造
+
+100,000以上のメトリクスは，体系的な命名規則に従っている．
+
+```mermaid
+flowchart LR
+    A[ハードウェアユニット] -->|"__"| B[メトリクス名]
+    B -->|"."| C[集計方法]
+    style A fill:#f9f,stroke:#333
+    style B fill:#bbf,stroke:#333
+    style C fill:#bfb,stroke:#333
+```
+
+ハードウェアユニットの種類:
+- `dram`: グローバルメモリ（DRAM）
+- `l1tex`: L1キャッシュ
+- `lts`: L2キャッシュ
+- `sm`: ストリーミングマルチプロセッサ
+- `gpu`: GPU全体
+
+集計方法（ドット以降のサフィックス）:
+- `.avg`: 全SMの平均値
+- `.max`: 全SMの最大値
+- `.min`: 全SMの最小値
+- `.sum`: GPU全体の合計値（最大値 x SM数で計算）
+
+### メトリクスの収集方法
+
+```bash
+# 特定のメトリクスを収集
+ncu --metrics l1tex__t_sector_hit_rate.pct ./executable
+
+# 複数メトリクスをカンマ区切りで指定
+ncu --metrics l1tex__t_sector_hit_rate.pct,lts__t_sector_hit_rate.pct ./executable
+
+# ドットを省略して全集計方法を取得
+ncu --metrics sm__inst_executed ./executable
+
+# CSV形式で出力
+ncu --metrics sm__inst_executed --csv ./executable > output.csv
+
+# 正規表現でハードウェアユニット指定
+ncu --metrics regex:.*shared.* --csv ./executable > shared_metrics.csv
+```
+
+### 実践例: L1キャッシュヒット率の分析
+
+ベクトル加算アプリケーションのL1キャッシュヒット率を確認すると0%であり，すべてのメモリ操作がグローバルメモリから読み込まれていることがわかる．L1キャッシュヒット時は約30サイクルで済むが，グローバルメモリアクセスには数百サイクルが必要なため，アプリケーションの最適化が求められる．
+
+### メトリクスのクエリ
+
+利用可能なすべてのメトリクスを照会するには以下のコマンドを使用する．
+
+```bash
+ncu --query-metrics-mode all --query-metrics > all_metrics.txt
+```
+
+## まとめ
+
+- Nsight Computeは23以上のセクションと100,000以上のメトリクスを提供し，`--section`や`--metrics`オプションで必要な情報を選択的に収集できる
+- メトリクス名は「ハードウェアユニット__メトリクス名.集計方法」という体系的な命名規則に従う
+- `.avg`，`.max`，`.min`，`.sum`の4つの集計方法で，SM単位とGPU全体の両方の視点から分析できる
+- `--csv`オプションでExcelやスプレッドシートでの分析用に出力を保存できる
+- 正規表現を使って特定のハードウェアユニットに関連するメトリクスを一括で収集できる

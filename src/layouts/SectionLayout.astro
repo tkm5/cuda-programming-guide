@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Sidebar from '@/components/layout/Sidebar.astro'
+import Breadcrumb from '@/components/layout/Breadcrumb.astro'
+import ScrollToTop from '@/components/ui/ScrollToTop.astro'
+
+interface Props {
+  title: string
+  description: string
+  sectionNumber: number
+}
+
+const { title, description, sectionNumber } = Astro.props
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex">
+    <Sidebar currentSection={sectionNumber} />
+    <main class="min-w-0 flex-1 lg:ml-[280px]">
+      <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <Breadcrumb sectionNumber={sectionNumber} />
+        <h1 class="mb-6 text-2xl font-bold leading-tight sm:text-3xl">
+          {title}
+        </h1>
+        <div class="prose">
+          <slot />
+        </div>
+      </div>
+    </main>
+  </div>
+  <ScrollToTop />
+</BaseLayout>

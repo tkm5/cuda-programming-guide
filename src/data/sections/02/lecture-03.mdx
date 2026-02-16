@@ -1,0 +1,87 @@
+---
+title: "S2-L3: Installing WSL to use Linux on windows OS."
+description: "Installing Cuda and other programs - Installing WSL to use Linux on windows OS.の解説"
+sectionNumber: 2
+sectionTitle: "Installing Cuda and other programs"
+lectureNumber: 3
+lectureTitle: "Installing WSL to use Linux on windows OS."
+difficulty: "beginner"
+tags: ["setup", "cuda"]
+category: "setup"
+order: 203
+---
+
+## 概要
+
+WSL（Windows Subsystem for Linux）を使うと，Windowsを置き換えることなくLinuxディストリビューションをWindows上にインストールできる．このレクチャーでは，WSLのインストール手順とトラブルシューティングの方法を解説する．
+
+## 主要な内容
+
+### WSLのインストール手順
+
+WSLのインストールは，コマンドプロンプト（cmd）から簡単に行える．
+
+1. スタートメニューからコマンドプロンプトを開く
+2. 利用可能なディストリビューションを確認する
+
+```bash
+wsl --install
+```
+
+このコマンドにより，Ubuntu，Debianなど利用可能なLinuxディストリビューションの一覧が表示される．
+
+3. 特定のディストリビューションを指定してインストールする
+
+```bash
+wsl -d Ubuntu-20.04
+```
+
+`-d`オプションでディストリビューション名を指定する．
+
+### トラブルシューティング
+
+インストール中にエラーが発生した場合は，以下の手順で対処する．
+
+1. エラーメッセージをコピーしてGoogleで検索する
+2. WSLを最新バージョンに更新する
+
+```bash
+wsl --update
+```
+
+3. WSLのデフォルトバージョンをWSL2に設定する
+
+```bash
+wsl --set-default-version 2
+```
+
+4. 再度ディストリビューションのインストールを試みる
+
+### Linuxの初期設定
+
+インストールが成功すると，Linuxシステムが起動し初期設定が求められる．
+
+1. ユーザー名を作成する
+2. パスワードを設定する
+3. パスワードを再入力して確認する
+
+設定完了後，Ubuntuのコマンドラインが利用可能になり，Linuxコマンドを実行できるようになる．
+
+```mermaid
+flowchart TD
+    A[コマンドプロンプトを開く] --> B[wsl --install で確認]
+    B --> C[wsl -d でディストリビューション指定]
+    C --> D{インストール成功?}
+    D -->|はい| E[ユーザー名・パスワード設定]
+    D -->|いいえ| F[wsl --update で更新]
+    F --> G[WSL2 をデフォルトに設定]
+    G --> C
+    E --> H[Linux 環境が利用可能に]
+```
+
+## まとめ
+
+- WSLを使えばWindowsを置き換えずにLinux環境を構築できる
+- `wsl --install`コマンドで利用可能なディストリビューションを確認し，`-d`オプションで指定してインストールする
+- エラー発生時は`wsl --update`でWSLを更新し，WSL2をデフォルトバージョンに設定して再試行する
+- 次のレクチャーで，このLinux環境上にCUDAツールキットをインストールする方法を学ぶ

@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content'
+import { render } from 'astro:content'
+import LectureLayout from '@/layouts/LectureLayout.astro'
+import { getAdjacentLectures } from '@/utils/navigation'
+import { padSection, padLecture } from '@/utils/sections'
+
+export async function getStaticPaths() {
+  const entries = await getCollection('sections')
+  return entries
+    .filter((e) => e.data.lectureNumber > 0)
+    .map((entry) => ({
+      params: {
+        section: padSection(entry.data.sectionNumber),
+        lecture: `lecture-${padLecture(entry.data.lectureNumber)}`,
+      },
+      props: { entry },
+    }))
+}
+
+const { entry } = Astro.props
+const { Content, headings } = await render(entry)
+const { sectionNumber, lectureNumber, title, description } =
+  entry.data
+const { prev, next } = await getAdjacentLectures(sectionNumber, lectureNumber)
+---
+
+<LectureLayout
+  title={title}
+  description={description}
+  sectionNumber={sectionNumber}
+  lectureNumber={lectureNumber}
+  lectureTitle={title}
+  headings={headings}
+  prev={prev}
+  next={next}
+>
+  <Content />
+</LectureLayout>
