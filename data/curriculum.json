@@ -1,0 +1,865 @@
+{
+  "count": 72,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "_class": "chapter",
+      "id": 6778744,
+      "title": "Introduction to the Nvidia GPUs hardware",
+      "object_index": 1
+    },
+    {
+      "_class": "lecture",
+      "id": 33558628,
+      "title": "GPU vs CPU (very important)",
+      "asset": {
+        "_class": "asset",
+        "id": 52417350,
+        "asset_type": "Video",
+        "title": "01.mp4",
+        "length": 1249
+      },
+      "object_index": 1
+    },
+    {
+      "_class": "lecture",
+      "id": 40606346,
+      "title": "NVidia's history (How Nvidia started dominating the GPU sector)",
+      "asset": {
+        "_class": "asset",
+        "id": 52756232,
+        "asset_type": "Video",
+        "title": "S2_02_History and Journey.mp4",
+        "length": 318
+      },
+      "object_index": 2
+    },
+    {
+      "_class": "lecture",
+      "id": 40623506,
+      "title": "Architectures and Generations relationship [Hopper, Ampere, GeForce and Tesla]",
+      "asset": {
+        "_class": "asset",
+        "id": 52740363,
+        "asset_type": "Video",
+        "title": "03_Final.mp4",
+        "length": 967
+      },
+      "object_index": 3
+    },
+    {
+      "_class": "lecture",
+      "id": 40734902,
+      "title": "How to know the Architecture and Generation",
+      "asset": {
+        "_class": "asset",
+        "id": 52740291,
+        "asset_type": "Video",
+        "title": "04_Final.mp4",
+        "length": 416
+      },
+      "object_index": 4
+    },
+    {
+      "_class": "lecture",
+      "id": 40909104,
+      "title": "The difference between the GPU and the GPU Chip",
+      "asset": {
+        "_class": "asset",
+        "id": 52820312,
+        "asset_type": "Video",
+        "title": "4_01 GPU and GPU Chip.mp4",
+        "length": 290
+      },
+      "object_index": 5
+    },
+    {
+      "_class": "lecture",
+      "id": 40909146,
+      "title": "The architectures and the corresponding chips",
+      "asset": {
+        "_class": "asset",
+        "id": 52820388,
+        "asset_type": "Video",
+        "title": "04_02 Arch and its chips.mp4",
+        "length": 325
+      },
+      "object_index": 6
+    },
+    {
+      "_class": "lecture",
+      "id": 33394974,
+      "title": "Nvidia GPU architectures From Fermi to hopper",
+      "asset": {
+        "_class": "asset",
+        "id": 52987272,
+        "asset_type": "Video",
+        "title": "5_01 Various architectures_1.mp4",
+        "length": 744
+      },
+      "object_index": 7
+    },
+    {
+      "_class": "lecture",
+      "id": 33929696,
+      "title": "Parameters required to compare between different Architectures",
+      "asset": {
+        "_class": "asset",
+        "id": 53032936,
+        "asset_type": "Video",
+        "title": "Parameters.mp4",
+        "length": 1445
+      },
+      "object_index": 8
+    },
+    {
+      "_class": "lecture",
+      "id": 40809376,
+      "title": "Half, single and double precision operations",
+      "asset": {
+        "_class": "asset",
+        "id": 53034238,
+        "asset_type": "Video",
+        "title": "9 Data types and sizes.mp4",
+        "length": 386
+      },
+      "object_index": 9
+    },
+    {
+      "_class": "lecture",
+      "id": 40590264,
+      "title": "Compute capability  and utilizations of the GPUs",
+      "asset": {
+        "_class": "asset",
+        "id": 53036022,
+        "asset_type": "Video",
+        "title": "11 Computer Capability.mp4",
+        "length": 510
+      },
+      "object_index": 10
+    },
+    {
+      "_class": "lecture",
+      "id": 34149372,
+      "title": "Before reading any whitepapers !! look at this",
+      "asset": {
+        "_class": "asset",
+        "id": 53037416,
+        "asset_type": "Video",
+        "title": "12 Before Reading any whitepaper.mp4",
+        "length": 522
+      },
+      "object_index": 11
+    },
+    {
+      "_class": "lecture",
+      "id": 34009752,
+      "title": "Volta+Ampere+Pascal+SIMD (Don't skip)",
+      "asset": {
+        "_class": "asset",
+        "id": 53203850,
+        "asset_type": "Video",
+        "title": "13 Volta Whitepaper.mp4",
+        "length": 3128
+      },
+      "object_index": 12
+    },
+    {
+      "_class": "chapter",
+      "id": 6937168,
+      "title": "Installing Cuda and other programs",
+      "object_index": 2
+    },
+    {
+      "_class": "lecture",
+      "id": 41215706,
+      "title": "What features installed with the CUDA toolkit?",
+      "asset": {
+        "_class": "asset",
+        "id": 53207720,
+        "asset_type": "Video",
+        "title": "sec_02_01_Cuda toolkit features.mp4",
+        "length": 398
+      },
+      "object_index": 13
+    },
+    {
+      "_class": "lecture",
+      "id": 28888420,
+      "title": "Installing CUDA on Windows",
+      "asset": {
+        "_class": "asset",
+        "id": 53225724,
+        "asset_type": "Video",
+        "title": "Sec_02_02 Installing vidual studio and CUDA.mp4",
+        "length": 288
+      },
+      "object_index": 14
+    },
+    {
+      "_class": "lecture",
+      "id": 34013870,
+      "title": "Installing WSL to use Linux on windows OS.",
+      "asset": {
+        "_class": "asset",
+        "id": 53226152,
+        "asset_type": "Video",
+        "title": "Sec_02_03_installing the WSL tool.mp4",
+        "length": 386
+      },
+      "object_index": 15
+    },
+    {
+      "_class": "lecture",
+      "id": 28825540,
+      "title": "Installing Cuda toolkits on Linux",
+      "asset": {
+        "_class": "asset",
+        "id": 53352160,
+        "asset_type": "Video",
+        "title": "Sec02_04 Installing cuda on linux.mp4",
+        "length": 226
+      },
+      "object_index": 16
+    },
+    {
+      "_class": "chapter",
+      "id": 6778862,
+      "title": "Introduction to CUDA programming",
+      "object_index": 3
+    },
+    {
+      "_class": "lecture",
+      "id": 46516765,
+      "title": "The course github repo",
+      "asset": {
+        "_class": "asset",
+        "id": 60150701,
+        "asset_type": "Article",
+        "title": "",
+        "length": 3
+      },
+      "object_index": 17
+    },
+    {
+      "_class": "lecture",
+      "id": 34013876,
+      "title": "Mapping SW from CUDA to HW + introducing CUDA.",
+      "asset": {
+        "_class": "asset",
+        "id": 55293642,
+        "asset_type": "Video",
+        "title": "S3_01 Introduction.mp4",
+        "length": 769
+      },
+      "object_index": 18
+    },
+    {
+      "_class": "lecture",
+      "id": 28221646,
+      "title": "001 Hello World program (threads - Blocks)",
+      "asset": {
+        "_class": "asset",
+        "id": 53352006,
+        "asset_type": "Video",
+        "title": "Sec_03_02_installing the WSL tool_final.mp4",
+        "length": 1239
+      },
+      "object_index": 19
+    },
+    {
+      "_class": "lecture",
+      "id": 42255550,
+      "title": "Compiling Cuda on Linux",
+      "asset": {
+        "_class": "asset",
+        "id": 55292108,
+        "asset_type": "Video",
+        "title": "sec3_3 Compiling cuda on linux.mp4",
+        "length": 594
+      },
+      "object_index": 20
+    },
+    {
+      "_class": "lecture",
+      "id": 34013956,
+      "title": "002 Hello World program ( Warp_IDs)",
+      "asset": {
+        "_class": "asset",
+        "id": 53311854,
+        "asset_type": "Video",
+        "title": "S3_03 WarpIDs_finall.mp4",
+        "length": 543
+      },
+      "object_index": 21
+    },
+    {
+      "_class": "lecture",
+      "id": 33805758,
+      "title": "003 : Vector addition + the Steps for any CUDA project",
+      "asset": {
+        "_class": "asset",
+        "id": 54470374,
+        "asset_type": "Video",
+        "title": "S3_04 Vector addition_final.mp4",
+        "length": 1350
+      },
+      "object_index": 22
+    },
+    {
+      "_class": "lecture",
+      "id": 34013954,
+      "title": "004 : Vector addition + blocks and thread indexing + GPU performance",
+      "asset": {
+        "_class": "asset",
+        "id": 54565998,
+        "asset_type": "Video",
+        "title": "S3_05 IDs and indexing.mp4",
+        "length": 1101
+      },
+      "object_index": 23
+    },
+    {
+      "_class": "lecture",
+      "id": 42255560,
+      "title": "005 levels of parallelization - Vector addition with Extra-large vectors",
+      "asset": {
+        "_class": "asset",
+        "id": 55240436,
+        "asset_type": "Video",
+        "title": "S3_06 Vector_add_large_sizes final01.mp4",
+        "length": 1111
+      },
+      "object_index": 24
+    },
+    {
+      "_class": "chapter",
+      "id": 6915296,
+      "title": "Profiling",
+      "object_index": 4
+    },
+    {
+      "_class": "lecture",
+      "id": 33805766,
+      "title": "Query the device properties using the Runtime APIs",
+      "asset": {
+        "_class": "asset",
+        "id": 55373220,
+        "asset_type": "Video",
+        "title": "sec4_001 runtime APIs final.mp4",
+        "length": 1126
+      },
+      "object_index": 25
+    },
+    {
+      "_class": "lecture",
+      "id": 34234622,
+      "title": "Nvidia-smi and its configurations (Linux User)",
+      "asset": {
+        "_class": "asset",
+        "id": 55425858,
+        "asset_type": "Video",
+        "title": "sec4_002 nvidia_smi.mp4",
+        "length": 1650
+      },
+      "object_index": 26
+    },
+    {
+      "_class": "lecture",
+      "id": 42389010,
+      "title": "The GPU's Occupancy and Latency hiding",
+      "asset": {
+        "_class": "asset",
+        "id": 55518020,
+        "asset_type": "Video",
+        "title": "sec4_003 occupancy.mp4",
+        "length": 3151
+      },
+      "object_index": 27
+    },
+    {
+      "_class": "lecture",
+      "id": 42845852,
+      "title": "Allocated active blocks per SM (important)",
+      "asset": {
+        "_class": "asset",
+        "id": 55773588,
+        "asset_type": "Video",
+        "title": "Sec4_004 The allocated active blocks per SM.mp4",
+        "length": 1014
+      },
+      "object_index": 28
+    },
+    {
+      "_class": "quiz",
+      "id": 6295172,
+      "title": "how many blocks can we run concurrently per SM?",
+      "type": "simple-quiz",
+      "created": "2024-03-25T07:25:40Z",
+      "description": "",
+      "title_cleaned": "",
+      "is_published": true,
+      "sort_order": 48,
+      "object_index": 1,
+      "is_draft": false,
+      "version": 1,
+      "duration": 0,
+      "pass_percent": 70
+    },
+    {
+      "_class": "lecture",
+      "id": 42862696,
+      "title": "Starting with the nsight compute (first issue)",
+      "asset": {
+        "_class": "asset",
+        "id": 55412712,
+        "asset_type": "Video",
+        "title": "sec4_005 performance counters access issue.mp4",
+        "length": 541
+      },
+      "object_index": 29
+    },
+    {
+      "_class": "lecture",
+      "id": 42255650,
+      "title": "All profiling tools from NVidia (Nsight systems - compute - nvprof ...)",
+      "asset": {
+        "_class": "asset",
+        "id": 55993764,
+        "asset_type": "Video",
+        "title": "Sec4_06 all profiling tools.mp4",
+        "length": 275
+      },
+      "object_index": 30
+    },
+    {
+      "_class": "lecture",
+      "id": 43052966,
+      "title": "Error checking APIs",
+      "asset": {
+        "_class": "asset",
+        "id": 56170456,
+        "asset_type": "Video",
+        "title": "Sec4_007 Error Checking.mp4",
+        "length": 1816
+      },
+      "object_index": 31
+    },
+    {
+      "_class": "lecture",
+      "id": 33395236,
+      "title": "Nsight Compute performance using command line analysis",
+      "asset": {
+        "_class": "asset",
+        "id": 59717121,
+        "asset_type": "Video",
+        "title": "sec4_08 nsight compute command line analysis.mp4",
+        "length": 2361
+      },
+      "object_index": 32
+    },
+    {
+      "_class": "lecture",
+      "id": 42973896,
+      "title": "Graphical Nsight Compute (windows and linux)",
+      "asset": {
+        "_class": "asset",
+        "id": 63561037,
+        "asset_type": "Video",
+        "title": "sec4_009 Graphical Nsight Compute1.mp4",
+        "length": 3540
+      },
+      "object_index": 33
+    },
+    {
+      "_class": "chapter",
+      "id": 10996941,
+      "title": "Performance analysis for the previous applications",
+      "object_index": 5
+    },
+    {
+      "_class": "lecture",
+      "id": 46204947,
+      "title": "Performance analysis",
+      "asset": {
+        "_class": "asset",
+        "id": 59738973,
+        "asset_type": "Video",
+        "title": "performance analysis.mp4",
+        "length": 1961
+      },
+      "object_index": 34
+    },
+    {
+      "_class": "lecture",
+      "id": 46267835,
+      "title": "Vector addition with a size not power of 2 !!! important",
+      "asset": {
+        "_class": "asset",
+        "id": 59910195,
+        "asset_type": "Video",
+        "title": "sec5-002.mp4",
+        "length": 718
+      },
+      "object_index": 35
+    },
+    {
+      "_class": "chapter",
+      "id": 10231906,
+      "title": "2D Indexing",
+      "object_index": 6
+    },
+    {
+      "_class": "lecture",
+      "id": 42973934,
+      "title": "Matrices addition using 2D of blocks and threads",
+      "asset": {
+        "_class": "asset",
+        "id": 59784973,
+        "asset_type": "Video",
+        "title": "sec6-001 2D matrices addition.mp4",
+        "length": 3062
+      },
+      "object_index": 36
+    },
+    {
+      "_class": "lecture",
+      "id": 46223079,
+      "title": "Why L1 Hit-rate is zero ?",
+      "asset": {
+        "_class": "asset",
+        "id": 59802937,
+        "asset_type": "Video",
+        "title": "sec6-002 L1 and L2 hitrates anslysis.mp4",
+        "length": 1478
+      },
+      "object_index": 37
+    },
+    {
+      "_class": "chapter",
+      "id": 11005137,
+      "title": "Shared Memory + Warp Divergence",
+      "object_index": 7
+    },
+    {
+      "_class": "lecture",
+      "id": 46320299,
+      "title": "The shared memory",
+      "asset": {
+        "_class": "asset",
+        "id": 59912023,
+        "asset_type": "Video",
+        "title": "sec7-001 Shared memory.mp4",
+        "length": 2089
+      },
+      "object_index": 38
+    },
+    {
+      "_class": "quiz",
+      "id": 6585649,
+      "title": "Quiz 1",
+      "type": "simple-quiz",
+      "created": "2024-10-14T01:21:05Z",
+      "description": "<p>How many conflicts when a warp is reading double precision operations with 8 Bytes stride ?</p>",
+      "title_cleaned": "",
+      "is_published": true,
+      "sort_order": 34,
+      "object_index": 2,
+      "is_draft": false,
+      "version": 1,
+      "duration": 0,
+      "pass_percent": 70
+    },
+    {
+      "_class": "lecture",
+      "id": 46320995,
+      "title": "Warp Divergence",
+      "asset": {
+        "_class": "asset",
+        "id": 59914351,
+        "asset_type": "Video",
+        "title": "sec7_002 warp divergence.mp4",
+        "length": 917
+      },
+      "object_index": 39
+    },
+    {
+      "_class": "chapter",
+      "id": 11008921,
+      "title": "Debugging tools",
+      "object_index": 8
+    },
+    {
+      "_class": "lecture",
+      "id": 46425093,
+      "title": "Debugging using visual studio (important) 1",
+      "asset": {
+        "_class": "asset",
+        "id": 60027687,
+        "asset_type": "Video",
+        "title": "sec8-001 nsight integration debugging tool.mp4",
+        "length": 2412
+      },
+      "object_index": 40
+    },
+    {
+      "_class": "chapter",
+      "id": 11061349,
+      "title": "Vector Reduction",
+      "object_index": 9
+    },
+    {
+      "_class": "lecture",
+      "id": 46482873,
+      "title": "Vector Reduction using global memory only (baseline)",
+      "asset": {
+        "_class": "asset",
+        "id": 60119877,
+        "asset_type": "Video",
+        "title": "sec8_001.mp4",
+        "length": 3786
+      },
+      "object_index": 41
+    },
+    {
+      "_class": "lecture",
+      "id": 46502265,
+      "title": "Understanding the code and the profiling of the vector reduction",
+      "asset": {
+        "_class": "asset",
+        "id": 60131161,
+        "asset_type": "Video",
+        "title": "sec8_002 Understanding the code and the profiling of the vector reduction.mp4",
+        "length": 2402
+      },
+      "object_index": 42
+    },
+    {
+      "_class": "lecture",
+      "id": 46502267,
+      "title": "Optimizing the vector reduction (removing the filter)",
+      "asset": {
+        "_class": "asset",
+        "id": 60131537,
+        "asset_type": "Video",
+        "title": "sec8_003_Optimizing the vector reduction.mp4",
+        "length": 1365
+      },
+      "object_index": 43
+    },
+    {
+      "_class": "lecture",
+      "id": 46756093,
+      "title": "The Race Condition and the debugging option",
+      "asset": {
+        "_class": "asset",
+        "id": 62077551,
+        "asset_type": "Video",
+        "title": "nvccoptions.mp4",
+        "length": 1478
+      },
+      "object_index": 44
+    },
+    {
+      "_class": "lecture",
+      "id": 46545257,
+      "title": "Optimizing the thread utilizations on vector reduction",
+      "asset": {
+        "_class": "asset",
+        "id": 60191775,
+        "asset_type": "Video",
+        "title": "sec8_004.mp4",
+        "length": 2254
+      },
+      "object_index": 45
+    },
+    {
+      "_class": "lecture",
+      "id": 46548913,
+      "title": "Optimization using shared memory and unrolling",
+      "asset": {
+        "_class": "asset",
+        "id": 60193413,
+        "asset_type": "Video",
+        "title": "sec8_005.mp4",
+        "length": 1940
+      },
+      "object_index": 46
+    },
+    {
+      "_class": "lecture",
+      "id": 46668965,
+      "title": "Shuffle operations optimizations",
+      "asset": {
+        "_class": "asset",
+        "id": 60358001,
+        "asset_type": "Video",
+        "title": "sec8_006.mp4",
+        "length": 2949
+      },
+      "object_index": 47
+    },
+    {
+      "_class": "chapter",
+      "id": 11105643,
+      "title": "Roofline model",
+      "object_index": 10
+    },
+    {
+      "_class": "lecture",
+      "id": 46677493,
+      "title": "Roofline Analysis :(Compute and Memory bounds apps)",
+      "asset": {
+        "_class": "asset",
+        "id": 62026223,
+        "asset_type": "Video",
+        "title": "roofline.mp4",
+        "length": 2594
+      },
+      "object_index": 48
+    },
+    {
+      "_class": "chapter",
+      "id": 11076425,
+      "title": "Matrix Multiplication (Bonus)",
+      "object_index": 11
+    },
+    {
+      "_class": "lecture",
+      "id": 46549287,
+      "title": "Naive implementation of the matrix multiplication",
+      "asset": {
+        "_class": "asset",
+        "id": 62229767,
+        "asset_type": "Video",
+        "title": "naivemm.mp4",
+        "length": 3671
+      },
+      "object_index": 49
+    },
+    {
+      "_class": "lecture",
+      "id": 46549293,
+      "title": "Optimize the Matrix Multiplication using the shared memory",
+      "asset": {
+        "_class": "asset",
+        "id": 62251883,
+        "asset_type": "Video",
+        "title": "naive02.mp4",
+        "length": 3577
+      },
+      "object_index": 50
+    },
+    {
+      "_class": "lecture",
+      "id": 46549301,
+      "title": "Optimization of the MM using float4 (important)",
+      "asset": {
+        "_class": "asset",
+        "id": 62328293,
+        "asset_type": "Video",
+        "title": "mm033.mp4",
+        "length": 3192
+      },
+      "object_index": 51
+    },
+    {
+      "_class": "lecture",
+      "id": 46549331,
+      "title": "Tiling in matrix multiplication",
+      "asset": {
+        "_class": "asset",
+        "id": 62395515,
+        "asset_type": "Video",
+        "title": "tiling.mp4",
+        "length": 1269
+      },
+      "object_index": 52
+    },
+    {
+      "_class": "lecture",
+      "id": 48188743,
+      "title": "The Tensor cores (introduction)",
+      "asset": {
+        "_class": "asset",
+        "id": 62413165,
+        "asset_type": "Video",
+        "title": "tc_intro.mp4",
+        "length": 1204
+      },
+      "object_index": 53
+    },
+    {
+      "_class": "lecture",
+      "id": 46549329,
+      "title": "Practical evaluation of the tensor cores",
+      "asset": {
+        "_class": "asset",
+        "id": 62425449,
+        "asset_type": "Video",
+        "title": "test_tensor.mp4",
+        "length": 551
+      },
+      "object_index": 54
+    },
+    {
+      "_class": "lecture",
+      "id": 48364935,
+      "title": "Programming the Tensor cores using WMMA APIs",
+      "asset": {
+        "_class": "asset",
+        "id": 63309329,
+        "asset_type": "Video",
+        "title": "wmma_01.mp4",
+        "length": 2587
+      },
+      "object_index": 55
+    },
+    {
+      "_class": "lecture",
+      "id": 48364941,
+      "title": "Practical example on the WMMA APIs",
+      "asset": {
+        "_class": "asset",
+        "id": 63309895,
+        "asset_type": "Video",
+        "title": "wmma example.mp4",
+        "length": 666
+      },
+      "object_index": 56
+    },
+    {
+      "_class": "lecture",
+      "id": 48364937,
+      "title": "Programming the Tensor cores using CUBlas library",
+      "asset": {
+        "_class": "asset",
+        "id": 63310583,
+        "asset_type": "Video",
+        "title": "cublas.mp4",
+        "length": 1077
+      },
+      "object_index": 57
+    },
+    {
+      "_class": "chapter",
+      "id": 11776871,
+      "title": "Profiling - nsight systems",
+      "object_index": 12
+    },
+    {
+      "_class": "lecture",
+      "id": 52910875,
+      "title": "NVIDIA Nsight Copilot",
+      "asset": {
+        "_class": "asset",
+        "id": 68698303,
+        "asset_type": "Article",
+        "title": "",
+        "length": 9
+      },
+      "object_index": 58
+    }
+  ]
+}

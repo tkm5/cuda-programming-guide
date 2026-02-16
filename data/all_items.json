@@ -1,0 +1,602 @@
+[
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 1,
+    "id": 33558628,
+    "title": "GPU vs CPU (very important)",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 2,
+    "id": 40606346,
+    "title": "NVidia's history (How Nvidia started dominating the GPU sector)",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 3,
+    "id": 40623506,
+    "title": "Architectures and Generations relationship [Hopper, Ampere, GeForce and Tesla]",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 4,
+    "id": 40734902,
+    "title": "How to know the Architecture and Generation",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 5,
+    "id": 40909104,
+    "title": "The difference between the GPU and the GPU Chip",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 6,
+    "id": 40909146,
+    "title": "The architectures and the corresponding chips",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 7,
+    "id": 33394974,
+    "title": "Nvidia GPU architectures From Fermi to hopper",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 8,
+    "id": 33929696,
+    "title": "Parameters required to compare between different Architectures",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 9,
+    "id": 40809376,
+    "title": "Half, single and double precision operations",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 10,
+    "id": 40590264,
+    "title": "Compute capability  and utilizations of the GPUs",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 11,
+    "id": 34149372,
+    "title": "Before reading any whitepapers !! look at this",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 1,
+    "lecture": 12,
+    "id": 34009752,
+    "title": "Volta+Ampere+Pascal+SIMD (Don't skip)",
+    "asset_type": "Video",
+    "section_title": "Introduction to the Nvidia GPUs hardware",
+    "category": "gpu-hardware"
+  },
+  {
+    "type": "lecture",
+    "section": 2,
+    "lecture": 1,
+    "id": 41215706,
+    "title": "What features installed with the CUDA toolkit?",
+    "asset_type": "Video",
+    "section_title": "Installing Cuda and other programs",
+    "category": "setup"
+  },
+  {
+    "type": "lecture",
+    "section": 2,
+    "lecture": 2,
+    "id": 28888420,
+    "title": "Installing CUDA on Windows",
+    "asset_type": "Video",
+    "section_title": "Installing Cuda and other programs",
+    "category": "setup"
+  },
+  {
+    "type": "lecture",
+    "section": 2,
+    "lecture": 3,
+    "id": 34013870,
+    "title": "Installing WSL to use Linux on windows OS.",
+    "asset_type": "Video",
+    "section_title": "Installing Cuda and other programs",
+    "category": "setup"
+  },
+  {
+    "type": "lecture",
+    "section": 2,
+    "lecture": 4,
+    "id": 28825540,
+    "title": "Installing Cuda toolkits on Linux",
+    "asset_type": "Video",
+    "section_title": "Installing Cuda and other programs",
+    "category": "setup"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 1,
+    "id": 46516765,
+    "title": "The course github repo",
+    "asset_type": "Article",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 2,
+    "id": 34013876,
+    "title": "Mapping SW from CUDA to HW + introducing CUDA.",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 3,
+    "id": 28221646,
+    "title": "001 Hello World program (threads - Blocks)",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 4,
+    "id": 42255550,
+    "title": "Compiling Cuda on Linux",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 5,
+    "id": 34013956,
+    "title": "002 Hello World program ( Warp_IDs)",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 6,
+    "id": 33805758,
+    "title": "003 : Vector addition + the Steps for any CUDA project",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 7,
+    "id": 34013954,
+    "title": "004 : Vector addition + blocks and thread indexing + GPU performance",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 3,
+    "lecture": 8,
+    "id": 42255560,
+    "title": "005 levels of parallelization - Vector addition with Extra-large vectors",
+    "asset_type": "Video",
+    "section_title": "Introduction to CUDA programming",
+    "category": "cuda-basics"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 1,
+    "id": 33805766,
+    "title": "Query the device properties using the Runtime APIs",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 2,
+    "id": 34234622,
+    "title": "Nvidia-smi and its configurations (Linux User)",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 3,
+    "id": 42389010,
+    "title": "The GPU's Occupancy and Latency hiding",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 4,
+    "id": 42845852,
+    "title": "Allocated active blocks per SM (important)",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "quiz",
+    "section": 4,
+    "lecture": 5,
+    "id": 6295172,
+    "title": "how many blocks can we run concurrently per SM?",
+    "asset_type": "Quiz",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 6,
+    "id": 42862696,
+    "title": "Starting with the nsight compute (first issue)",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 7,
+    "id": 42255650,
+    "title": "All profiling tools from NVidia (Nsight systems - compute - nvprof ...)",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 8,
+    "id": 43052966,
+    "title": "Error checking APIs",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 9,
+    "id": 33395236,
+    "title": "Nsight Compute performance using command line analysis",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 4,
+    "lecture": 10,
+    "id": 42973896,
+    "title": "Graphical Nsight Compute (windows and linux)",
+    "asset_type": "Video",
+    "section_title": "Profiling",
+    "category": "profiling"
+  },
+  {
+    "type": "lecture",
+    "section": 5,
+    "lecture": 1,
+    "id": 46204947,
+    "title": "Performance analysis",
+    "asset_type": "Video",
+    "section_title": "Performance analysis for the previous applications",
+    "category": "performance"
+  },
+  {
+    "type": "lecture",
+    "section": 5,
+    "lecture": 2,
+    "id": 46267835,
+    "title": "Vector addition with a size not power of 2 !!! important",
+    "asset_type": "Video",
+    "section_title": "Performance analysis for the previous applications",
+    "category": "performance"
+  },
+  {
+    "type": "lecture",
+    "section": 6,
+    "lecture": 1,
+    "id": 42973934,
+    "title": "Matrices addition using 2D of blocks and threads",
+    "asset_type": "Video",
+    "section_title": "2D Indexing",
+    "category": "indexing"
+  },
+  {
+    "type": "lecture",
+    "section": 6,
+    "lecture": 2,
+    "id": 46223079,
+    "title": "Why L1 Hit-rate is zero ?",
+    "asset_type": "Video",
+    "section_title": "2D Indexing",
+    "category": "indexing"
+  },
+  {
+    "type": "lecture",
+    "section": 7,
+    "lecture": 1,
+    "id": 46320299,
+    "title": "The shared memory",
+    "asset_type": "Video",
+    "section_title": "Shared Memory + Warp Divergence",
+    "category": "memory-optimization"
+  },
+  {
+    "type": "quiz",
+    "section": 7,
+    "lecture": 2,
+    "id": 6585649,
+    "title": "Quiz 1",
+    "asset_type": "Quiz",
+    "section_title": "Shared Memory + Warp Divergence",
+    "category": "memory-optimization"
+  },
+  {
+    "type": "lecture",
+    "section": 7,
+    "lecture": 3,
+    "id": 46320995,
+    "title": "Warp Divergence",
+    "asset_type": "Video",
+    "section_title": "Shared Memory + Warp Divergence",
+    "category": "memory-optimization"
+  },
+  {
+    "type": "lecture",
+    "section": 8,
+    "lecture": 1,
+    "id": 46425093,
+    "title": "Debugging using visual studio (important) 1",
+    "asset_type": "Video",
+    "section_title": "Debugging tools",
+    "category": "debugging"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 1,
+    "id": 46482873,
+    "title": "Vector Reduction using global memory only (baseline)",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 2,
+    "id": 46502265,
+    "title": "Understanding the code and the profiling of the vector reduction",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 3,
+    "id": 46502267,
+    "title": "Optimizing the vector reduction (removing the filter)",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 4,
+    "id": 46756093,
+    "title": "The Race Condition and the debugging option",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 5,
+    "id": 46545257,
+    "title": "Optimizing the thread utilizations on vector reduction",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 6,
+    "id": 46548913,
+    "title": "Optimization using shared memory and unrolling",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 9,
+    "lecture": 7,
+    "id": 46668965,
+    "title": "Shuffle operations optimizations",
+    "asset_type": "Video",
+    "section_title": "Vector Reduction",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 10,
+    "lecture": 1,
+    "id": 46677493,
+    "title": "Roofline Analysis :(Compute and Memory bounds apps)",
+    "asset_type": "Video",
+    "section_title": "Roofline model",
+    "category": "performance"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 1,
+    "id": 46549287,
+    "title": "Naive implementation of the matrix multiplication",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 2,
+    "id": 46549293,
+    "title": "Optimize the Matrix Multiplication using the shared memory",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 3,
+    "id": 46549301,
+    "title": "Optimization of the MM using float4 (important)",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 4,
+    "id": 46549331,
+    "title": "Tiling in matrix multiplication",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 5,
+    "id": 48188743,
+    "title": "The Tensor cores (introduction)",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 6,
+    "id": 46549329,
+    "title": "Practical evaluation of the tensor cores",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 7,
+    "id": 48364935,
+    "title": "Programming the Tensor cores using WMMA APIs",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 8,
+    "id": 48364941,
+    "title": "Practical example on the WMMA APIs",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 11,
+    "lecture": 9,
+    "id": 48364937,
+    "title": "Programming the Tensor cores using CUBlas library",
+    "asset_type": "Video",
+    "section_title": "Matrix Multiplication (Bonus)",
+    "category": "algorithms"
+  },
+  {
+    "type": "lecture",
+    "section": 12,
+    "lecture": 1,
+    "id": 52910875,
+    "title": "NVIDIA Nsight Copilot",
+    "asset_type": "Article",
+    "section_title": "Profiling - nsight systems",
+    "category": "profiling"
+  }
+]
